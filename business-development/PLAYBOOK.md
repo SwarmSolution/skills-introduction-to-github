@@ -19,9 +19,25 @@ proposal → pipeline management — and how to stand them up.
 | `bd-meeting-prep` | Engagement | Assembles a one-page pre-call brief combining account research, competitive angle, and calendar/attendee context ahead of a discovery call or demo. |
 | `bd-proposal-writer` | Conversion | Drafts proposals, SOWs, and ROI/business-case narratives as polished `.docx`/`.pptx` deliverables tied to 3DEXPERIENCE value props. |
 | `bd-pipeline-strategist` | Management | Reviews pipeline/deal data, flags stalled deals, recommends next steps and pricing/negotiation strategy, produces forecast summaries (`.xlsx`). |
+| `bd-orchestrator` | Coordination | Runs prospecting → research → competitive check → outreach draft as one pipeline per account instead of four separate asks, and saves the consolidated result. Does not send outreach or track replies — see §4. |
 
 Each agent is defined in `.claude/agents/<name>.md` and is invokable via the
 `Agent` tool (`subagent_type: <name>`) or by name in `/agents`.
+
+## Reference material
+
+Two files are mirrored from Google Drive into
+`business-development/reference/` so every agent can read them via the
+`Read` tool without depending on the Drive connector (which has had
+permission-approval failures):
+- `product-reference-life-sciences.md` — brand value props, trigger
+  signals, typical buyers per 3DS brand.
+- `brand-voice.md` — tone/vocabulary rules (partial copy; re-pull the full
+  version from Drive once reads are working).
+
+Both are sourced from docs already prepared in an earlier session/prompt,
+not newly requested. If either drifts from the Drive original, update
+both.
 
 ## 2. Development plan
 
@@ -56,6 +72,34 @@ Each agent is defined in `.claude/agents/<name>.md` and is invokable via the
   when explicitly requested, not by default.
 - Iterate on each agent's prompt based on real usage; keep this playbook in
   sync as scope evolves.
+
+**Phase 5 — Orchestration (in progress)**
+- `bd-orchestrator` (added this change) automates prospect → research →
+  competitive check → outreach draft as one pipeline call. Validate it
+  against a real account next.
+- Sending outreach, tracking replies, and auto-flagging a qualified lead
+  are explicitly out of scope until an email connector (Gmail or similar)
+  is connected — see §4, Connectors. Don't build a fake version of this;
+  wire it in for real once the connector exists.
+- A CRM connector would upgrade `bd-pipeline-strategist` from
+  spreadsheet-only to live pipeline data — same rule, wire in for real,
+  don't fake it.
+
+## 4. Known gaps (permissions, templates, connectors)
+
+- **Permissions**: the Google Drive `read_file_content` tool and the
+  `send_later` reminder tool have both failed repeatedly in this
+  environment with a "requires approval" error — approve them when
+  prompted, or allowlist them, to unblock full-document reads and
+  scheduled reminders.
+- **Templates**: an outreach sequence template (format to follow, instead
+  of `bd-outreach-strategist`'s own default) and a presentation/deck
+  template for `bd-proposal-writer` are still outstanding.
+- **Connectors**: no CRM connector (blocks live pipeline data), no
+  email-sending connector (blocks actually sending outreach and tracking
+  replies — this is what `bd-orchestrator`'s qualified-lead detection is
+  waiting on), no LinkedIn/Sales Navigator access (blocks closing the
+  remaining named-contact gaps).
 
 ## 3. Working conventions
 

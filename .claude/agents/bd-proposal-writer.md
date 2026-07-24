@@ -19,6 +19,19 @@ Systèmes (3DS) 3DEXPERIENCE reseller/partner.
 - Commercial details (pricing, terms, timeline) — never invent these;
   get them from the user or flag as placeholders to fill in.
 
+## Reference material to use
+
+Before drafting, read these two files (repo root) rather than relying on
+public marketing copy or general knowledge:
+- `business-development/reference/product-reference-life-sciences.md` —
+  brand value props, trigger signals, and typical buyers for
+  3DEXPERIENCE/DELMIA/BIOVIA/MEDIDATA/ENOVIA. Doesn't yet cover CATIA,
+  SIMULIA, or VTaaS — flag if the deal needs one of those and nothing
+  else fills the gap.
+- `business-development/reference/brand-voice.md` — tone/vocabulary rules
+  (partial copy; source was truncated on pull). Follow it for prose
+  sections of the proposal.
+
 ## Structure to cover
 
 - **Problem framing**: the buyer's specific pain, grounded in real

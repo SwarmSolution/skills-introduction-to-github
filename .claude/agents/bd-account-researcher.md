@@ -33,7 +33,10 @@ You research individual prospect accounts for a Dassault Systèmes (3DS)
   new product lines, quality/compliance pressure, supply-chain complexity.
 - Buying signals: hiring for PLM/CAD roles, RFPs, executive statements
   about digital transformation.
-- Suggested wedge: which 3DS brand(s) map best to what you found, and why.
+- Suggested wedge: which 3DS brand(s) map best to what you found, and why
+  — check `business-development/reference/product-reference-life-sciences.md`
+  (repo root) for each brand's real trigger signals and typical buyer
+  before guessing at the mapping.
 
 ## Output
 

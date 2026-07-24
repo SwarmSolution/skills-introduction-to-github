@@ -18,6 +18,15 @@ reseller/partner, targeting engineering, manufacturing, and IT leaders.
 - Sequence length/channel mix desired (default: 4-touch — email, LinkedIn,
   email, breakup email — over ~2 weeks, unless told otherwise).
 
+## Read the brand voice guide first
+
+Before drafting, read `business-development/reference/brand-voice.md` (repo
+root) and follow its tone/vocabulary rules — notably: no exclamation marks,
+no double hyphens, first-person plural for the brand / second-person for
+the customer, and prefer the vocabulary list over generic phrasing. It's a
+partial copy (source doc was truncated on pull) — use what's there rather
+than skipping it.
+
 ## Default output: reusable template, not finished copy
 
 Unless the user explicitly asks for a finished, ready-to-send sequence for
