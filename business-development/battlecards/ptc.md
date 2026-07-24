@@ -35,6 +35,25 @@ in similar accounts:
   longer-horizon conversation tied to a future platform-consolidation or digital-transformation event
   (new CIO/CDO, M&A integration, plant build-out), not a first-call ask.
 
+## Account pattern: Tecomet / Orchid Orthopedic Solutions (post-merger contract manufacturer, Creo/Mastercam signal)
+
+Tecomet (largest orthopedic contract manufacturer) merged with Orchid Orthopedic Solutions
+(Jan–May 2026 close); the combined entity now operates under the Tecomet name. A single Tecomet
+manufacturing-engineer job posting names both PTC Creo/Pro-E and Mastercam — moderate confidence — while
+Siemens NX is separately and more strongly confirmed at Tecomet's design-focused sites (Wilmington MA,
+Woburn MA). SolidWorks (Dassault) also appears in Tecomet postings.
+
+This is a useful generalizable reminder for other contract-manufacturer accounts: Creo/Pro-E appearing
+in a manufacturing-engineer/CNC-programming posting alongside Mastercam is a weaker signal of Windchill
+PLM incumbency than Creo appearing in a design-engineer posting — CNC and machine shops commonly run
+Creo/Pro-E purely as a CAM front end with no PLM behind it at all. Do not assume Windchill is present at
+an account just because Creo is named; treat PLM/ERP/QMS as unconfirmed until an independent signal
+(admin/dev headcount, PLM-specific job req, integration project posting) turns up. At Tecomet, no PLM,
+ERP, or QMS vendor is confirmed on either legacy side, and Orchid shows zero public CAD/PLM signal
+pre-merger — a materially different, more open account picture than the mature Edwards Windchill
+incumbency above. SolidWorks' presence here is a 3DS foothold and DELMIA/3DEXPERIENCE expansion wedge,
+not competitive exposure.
+
 ## Where PTC wins
 
 - **Windchill is a credible, Gartner-recognized PLM leader.** Both Windchill and ENOVIA were named
@@ -146,6 +165,15 @@ you already use, not replacing them. CATIA becomes relevant later, where you hav
 surfacing work that is genuinely hard in your current toolset, not as a forced replacement of what already
 works.
 
+**"We saw Creo mentioned in one of your target account's job postings — doesn't that mean Windchill is
+already in there too?"**
+Not necessarily, and we would rather confirm than assume. Creo and Pro-E show up regularly in
+manufacturing-engineer and CNC-programming roles purely as a CAM front end, with no PLM behind them at
+all — that is a different signal than Creo appearing in a design-engineer posting alongside Windchill
+administration work. We would want to confirm PLM presence independently (dedicated Windchill headcount,
+a PLM-specific req, an integration project) before treating this as a Windchill displacement conversation
+rather than a green-field PLM/MOM opportunity.
+
 ## Landmines to avoid
 
 - **Do not claim Windchill is a weak or laggard PLM.** It is a 2026 Gartner Leader with the highest
@@ -182,6 +210,10 @@ works.
   and the market (Gartner Leader status, Army win) backs that framing up. The honest read is narrower: PTC
   no longer owns an in-house connectivity/IoT layer, which matters specifically for the manufacturing
   operations and digital-twin-of-the-factory conversation, not as evidence of broader company weakness.
+- **Do not assume Creo in a job posting means Windchill is present.** As the Tecomet/Orchid pattern above
+  shows, Creo/Pro-E frequently appears in CNC/manufacturing-engineering roles as a standalone CAM tool
+  with no PLM behind it. Confirm PLM incumbency independently before framing a pitch as Windchill
+  displacement.
 
 ## Sources
 
@@ -207,3 +239,6 @@ works.
 - Account grounding: Edwards Lifesciences PTC/Windchill incumbency finding, from this session's prior
   research (mature in-house Windchill dev/admin function, Creo/SolidWorks/Altium CAD mix, fragmented MES
   build-out).
+- Account grounding: Tecomet/Orchid Orthopedic Solutions merger (completed May 2026) and Tecomet job-posting
+  CAD signal (Creo/Pro-E and Mastercam in a manufacturing-engineer posting; NX confirmed separately at
+  Wilmington/Woburn MA) — [Tecomet and Orchid Complete Merger, press release](https://www.tecomet.com/media/miil3lgo/press-release_tecomet-and-orchid-complete-transaction.pdf), [BONEZONE merger coverage](https://bonezonepub.com/2026/05/14/tecomet-and-orchid-orthopedic-solutions-complete-merger/).

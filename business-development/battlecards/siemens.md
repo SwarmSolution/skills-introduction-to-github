@@ -26,6 +26,26 @@ GxP-specific workflows BIOVIA was purpose-built for.
 
 ---
 
+## Account Pattern: Tecomet / Orchid Orthopedic Solutions (post-merger multi-CAD contract manufacturer, 2026)
+
+Tecomet (largest orthopedic contract manufacturer, ~14 sites) and Orchid Orthopedic Solutions (10 sites)
+merged Jan–May 2026 and now operate as a single entity under the Tecomet name. Job-posting-level research
+(moderate-to-good confidence) confirms Siemens NX as an active CAD tool at Tecomet's Wilmington, MA and
+Woburn, MA design/manufacturing sites. A single, separate manufacturing-engineer posting also names PTC
+Creo/Pro-E and Mastercam — moderate confidence, and more consistent with shop-floor/CNC programming tools
+than a PLM backbone. One search result referenced Siemens Teamcenter, but it is unverified/synthesized —
+do not cite it as confirmed, and flag it as such if a rep encounters it. No ERP, QMS, or PLM vendor is
+confirmed at either legacy company, and Orchid shows zero public CAD/PLM signal pre-merger.
+
+Generalizable pattern for other post-merger medtech contract manufacturers: fragmented, multi-vendor CAD
+(NX + Creo + Mastercam, in this case) with no confirmed unified PLM/MOM incumbent is a stronger opening
+for a DELMIA-primary "govern the combined production footprint" pitch than a CAD-displacement pitch —
+there may be no single incumbent to dislodge, just point tools to unify. Do not assume Teamcenter is in
+place simply because NX is; confirm PLM/MOM presence independently before framing any conversation as a
+Teamcenter displacement.
+
+---
+
 ## Where They Win
 
 - **Digital twin credibility with a named, quantified reference.** Digital Twin Composer (GA mid-2026,
@@ -176,6 +196,10 @@ reconciliation later. We would rather scope a phased rollout with your team than
   assessment is Siemens' to hold in broad discrete/process MES maturity. Narrow the battle to GxP,
   biologics, and cell/gene therapy workflows where BIOVIA/DELMIA's platform-native process continuity is
   the differentiator, rather than arguing DELMIA is more mature MES in general.
+- **Do not assert Teamcenter is confirmed at an account just because NX is present.** NX and Teamcenter
+  are often sold and deployed together but are not the same signal; confirm PLM/MOM presence
+  independently (see Tecomet/Orchid account pattern above) before framing a conversation as a Teamcenter
+  displacement.
 
 ## Sources
 
@@ -202,3 +226,6 @@ reconciliation later. We would rather scope a phased rollout with your team than
 - [CATIA vs. NX 2025: Which CAD Platform Is Best? — CLEVR Blog](https://www.clevr.com/blog/catia-vs-nx-which-cad-platform-wins)
 - [Siemens NX vs 3DEXPERIENCE Platform: CAD Software Comparison — 6sense](https://6sense.com/tech/cad-software/3dexperienceplatform-vs-siemensnx)
 - [10 Reasons Why CATIA is Better Than Siemens NX — Dassault Systèmes community post (vendor-affiliated, treat as partisan source)](https://3dswym.3dexperience.3ds.com/post/catia-user-community/10-reasons-why-catia-is-better-than-siemens-nx_OBAmEh-0QLevFVF2G1IWyg)
+- Account grounding: Tecomet/Orchid Orthopedic Solutions merger (completed May 2026) and Tecomet job-posting
+  CAD signal (NX at Wilmington/Woburn MA; Creo/Pro-E and Mastercam in a separate manufacturing-engineer
+  posting) — [Tecomet and Orchid Complete Merger, press release](https://www.tecomet.com/media/miil3lgo/press-release_tecomet-and-orchid-complete-transaction.pdf), [BONEZONE merger coverage](https://bonezonepub.com/2026/05/14/tecomet-and-orchid-orthopedic-solutions-complete-merger/).
