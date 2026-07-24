@@ -67,10 +67,10 @@ cannot close.
 - **One governed data model instead of two platform lineages.** 3DEXPERIENCE Works pairs
   SOLIDWORKS with ENOVIA on a single collaborative data backbone, so design, change, and quality
   records live in one governed system of record. Fusion's PLM side has been through multiple
-  transitions — Fusion Lifecycle, then the 2021 acquisition and integration of Upchain, now
-  rebranded as Fusion Manage — which is a real migration and platform-continuity question for a
-  buyer thinking five years out, not just at initial deployment.
-  can raise directly with a prospect evaluating platform durability.
+  transitions (Fusion Lifecycle, then the 2021 acquisition and integration of Upchain, now
+  rebranded as Fusion Manage), which is a real migration and platform-continuity question worth
+  raising with a prospect evaluating platform durability five years out, not just at initial
+  deployment.
 - **Depth of simulation and surfacing.** SOLIDWORKS carries more mature parametric modeling,
   complex surfacing, and simulation depth (including paths into SIMULIA for advanced structural,
   fatigue, or multiphysics work) than Fusion's built-in CAE, which several independent

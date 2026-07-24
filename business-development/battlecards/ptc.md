@@ -19,11 +19,11 @@ in similar accounts:
   displace outright.
 - The CAD layer is already multi-vendor (Creo, SolidWorks, Altium), which is normal for medtech and
   electromechanical products. This means the realistic wedge is not "rip out Creo," it is proving out a
-  federated, single-source-of-truth data layer across the CAD tools they already have.
-  3DEXPERIENCE/ENOVIA's multi-CAD federation capability, and CATIA where surfacing or systems-level work
-  is needed, are the credible entry points, not a forced CAD swap.
-  Actually, be careful: [3DEXPERIENCE Works](https://www.3ds.com/products/3dexperience-works) and ENOVIA's
-  multi-CAD support are the field-verifiable claims to lead with, not a blanket "we support everything."
+  federated, single-source-of-truth data layer across the CAD tools they already have. ENOVIA's multi-CAD
+  federation capability and, where systems-level or complex surfacing work is genuinely needed, CATIA are
+  the credible entry points, not a forced CAD swap. Lead with ENOVIA's multi-CAD support and
+  3DEXPERIENCE Works as the field-verifiable claims; do not promise blanket "we support everything"
+  connectivity without confirming current support for the specific third-party tools in play.
 - The fragmented MES/smart-manufacturing build-out is the real opening. Windchill is a strong system of
   record for engineering data, but it is not a manufacturing operations platform. This is the natural
   DELMIA conversation: plant and process simulation, manufacturing execution, and a digital twin of the
