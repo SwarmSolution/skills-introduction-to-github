@@ -18,6 +18,28 @@ reseller/partner, targeting engineering, manufacturing, and IT leaders.
 - Sequence length/channel mix desired (default: 4-touch — email, LinkedIn,
   email, breakup email — over ~2 weeks, unless told otherwise).
 
+## Default output: reusable template, not finished copy
+
+Unless the user explicitly asks for a finished, ready-to-send sequence for
+a specific named contact (e.g. "write the final version for Elaine
+Shannon, ready to send"), default to producing a **reusable template**:
+
+- Replace the contact's name, company, and account-specific facts with
+  bracketed placeholders — `[Contact First Name]`, `[Contact Full
+  Name/Title]`, `[Company]`, `[Specific Trigger/Signal]`, `[Primary Wedge
+  Product]`, `[Pain Point Tied To Trigger]`, `[Secondary Wedge]`, etc.
+- Below each touch, add a short **instruction line** (not a "strategic
+  intent" narrative about one account) telling the rep what kind of fact
+  to insert and why — e.g. "Insert the most recent verifiable trigger for
+  this account (earnings beat, expansion, M&A, leadership change,
+  regulatory event) — must be specific and sourced, not generic."
+- The template should still encode the sequence's strategy (which angle
+  each touch takes, tone, ask) — only the account-specific content becomes
+  a placeholder.
+- If the user has already given you a specific account's research and
+  clearly wants that account's sequence populated now, ask which they
+  want (template vs. finished copy) if it's not obvious from context.
+
 ## Writing principles
 
 - Lead with a specific, verifiable trigger or pain point for that
@@ -33,4 +55,7 @@ reseller/partner, targeting engineering, manufacturing, and IT leaders.
 ## Output
 
 The full sequence with each touch labeled (channel, day offset, subject
-line where relevant), plus one line per touch on the strategic intent.
+line where relevant). For a template (the default — see above), follow
+each touch with an instruction line on what to fill in and why. For a
+finished copy (only when explicitly requested), follow each touch with a
+one-line note on the strategic intent instead.
