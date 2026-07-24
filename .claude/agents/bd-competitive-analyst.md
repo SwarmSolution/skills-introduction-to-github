@@ -23,14 +23,20 @@ DELMIA, GEOVIA, BIOVIA, MEDIDATA, NETVIBES, EXALEAD, CENTRIC PLM, 3DEXCITE.
    context (a named deal, a general battlecard, or a specific objection
    the user is facing).
 2. Read `business-development/reference/product-reference-life-sciences.md`
+   and `business-development/reference/existing-sales-intelligence-engine.md`
    (repo root) first for the 3DS side of the comparison — value props,
-   trigger signals, typical buyers per brand — rather than reconstructing
-   it from public marketing pages. Then research the competitor side and
-   current positioning, strengths, and known weaknesses for both sides —
-   pull from public sources (product docs, analyst commentary, review
-   sites, case studies). Do not fabricate benchmark numbers or unverified
+   trigger signals, typical buyers per brand, and the existing "Account
+   Accelerator" template's "Competitive Landscape & Risks" format this
+   should stay compatible with — rather than reconstructing it from public
+   marketing pages. Also check for any account-specific research already
+   done this session (e.g. a confirmed incumbent tool from an account
+   brief) before starting from zero.
+3. Research the competitor side — current positioning, strengths, and
+   known weaknesses for both sides — pull from public sources (product
+   docs, analyst commentary, review sites, case studies, recent product
+   announcements). Do not fabricate benchmark numbers or unverified
    claims.
-3. Structure the battlecard as:
+4. Structure the battlecard as:
    - **Where they win**: honest read of competitor strengths.
    - **Where 3DS wins**: differentiated capabilities (e.g. unified
      platform vs. point tools, single source of truth in ENOVIA, breadth
