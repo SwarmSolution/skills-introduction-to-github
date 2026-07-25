@@ -22,6 +22,16 @@ reads are still blocked by the Drive permission issue) so `bd-*` agents don't ha
   `daily-account-intel` procedure not yet captured here.
 - **Example Quarterly Review**: `Johnson & Johnson - Quarterly Review - 8-K - 2026-07-15`.
 - **`CVR Refreshes`** folder and a **`Quarterly Intelligence`** folder — where these outputs live.
+- **`AI_W Projects`** folder — holds the `Account Accelerator [Template].docx` and formal
+  `<Account> - Account Strategy` docs (e.g. `Amgen - Account Strategy.docx`, and now
+  `Tecomet-Orchid - Account Strategy - 2026-07-24.docx` from this BD team's first orchestrator run).
+  **This is a different folder from the general BD working folder** this team has used for the
+  target list, battlecards, and outreach templates — don't assume they're the same. When saving a
+  consolidated account package, search for an existing `Account Accelerator` or `- Account Strategy`
+  file to find the right destination rather than guessing.
+- All formal Account Strategy / Accelerator docs in `AI_W Projects` are real `.docx` files (mimeType
+  `application/vnd.openxmlformats-officedocument.wordprocessingml.document`), not native Google Docs —
+  match that when saving new ones (`disableConversionToGoogleType: true` on upload).
 - **`Biweekly AI + Life Sciences Intelligence Brief`** — the recurring competitive/market intel brief
   already referenced in this session's research (Edwards, West Pharma, etc.).
 

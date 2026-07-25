@@ -51,16 +51,59 @@ this as one pipeline instead of four separate asks.
 After the pipeline finishes for an account:
 1. Write a short status summary (what ran, what was skipped and why, one
    line per step).
-2. If the user has Google Drive available, use `ToolSearch` to find the
+2. Build the consolidated package as a real `.docx`, not plain text —
+   see "Producing the .docx" below. This is the standard for every
+   Drive-saved package this pipeline produces, not just this one.
+3. If the user has Google Drive available, use `ToolSearch` to find the
    current Drive `create_file` tool (its name is suffixed with a
    connector-instance ID that changes between sessions — don't hardcode
-   one from memory) and save the consolidated package there, in the same
-   BD folder prior research has used. If Drive isn't available or the
-   call fails, fall back to writing the package under
-   `business-development/` in the repo and say so.
-3. Report back: what was produced, where it was saved, and anything
+   one from memory). Search for an existing `<Account> - Account Strategy`
+   doc or the `Account Accelerator [Template].docx` file to find the
+   correct destination folder (there is a dedicated project folder for
+   these formal strategy docs, separate from the general BD working
+   folder used for target lists/battlecards/outreach templates — don't
+   assume they're the same folder). Save as `<Account> - Account Strategy
+   - <YYYY-MM-DD>`. If Drive isn't available or the call fails, fall back
+   to writing the package under `business-development/` in the repo and
+   say so.
+4. Report back: what was produced, where it was saved, and anything
    flagged as unverified (contact names, tooling assumptions, etc.) that's
    worth a human check before outreach goes out.
+
+## Producing the .docx
+
+Use the `docx` skill's script-based approach (`docx` npm package — `npm
+install docx` locally if `require('docx')` fails, per the skill's own
+instructions; `pandoc` is listed as a dependency but has not been
+reliably present in this environment, so don't depend on it being there).
+Two failure modes to avoid, both hit before:
+
+- **Don't redefine built-in style IDs.** If customizing heading
+  appearance, use `styles.default.title` / `styles.default.heading1` (and
+  similar) — NOT a `styles.paragraphStyles` entry with `id: "Title"` or
+  `id: "Heading1"`. The latter creates a second `<w:style>` with the same
+  `w:styleId` as docx-js's own built-in style, which is invalid OOXML and
+  will make the file fail to open in Word/LibreOffice even though it's
+  well-formed XML. If unsure, check for duplicates before trusting the
+  output: `grep -o 'w:styleId="[^"]*"' word/styles.xml | sort | uniq -c`
+  on the unzipped file — every count should be 1.
+- **LibreOffice (`soffice`) render-verification may not work in this
+  environment at all** — it can fail to convert even a trivial one-line
+  docx or a plain `.txt` file, which means a failed conversion here is
+  not evidence the file itself is broken. Don't burn time debugging the
+  file against it. Instead sanity-check structurally: unzip the `.docx`,
+  confirm every `.xml` part parses (e.g. Python's `xml.dom.minidom`), run
+  the styleId duplicate check above, and extract the visible text (regex
+  `<w:t[^>]*>([^<]*)</w:t>` across `word/document.xml`) to confirm the
+  real content made it in intact and isn't truncated or mangled.
+
+Upload with `contentMimeType:
+"application/vnd.openxmlformats-officedocument.wordprocessingml.document"`
+and `disableConversionToGoogleType: true` — without that flag the file
+gets auto-converted into a native Google Doc and loses all formatting
+(markdown syntax like `#`/`**`/`|` shows up as literal characters instead
+of real headings/bold/tables). This is exactly the mistake this rule
+exists to prevent — it happened once already.
 
 ## Qualified-lead detection (manual fallback until email/CRM connectors exist)
 
