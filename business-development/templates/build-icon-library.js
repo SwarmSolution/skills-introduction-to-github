@@ -833,6 +833,116 @@ const ICONS = {
   frameMedia: simple(ShapeType.frame, { w: 1.6, h: 1.6 }),
   plaqueBadge: simple(ShapeType.plaque, { w: 1.8, h: 1.2 }),
   squareTabsOrganize: simple(ShapeType.squareTabs, { w: 1.7, h: 1.7 }),
+
+  // --- Second expansion: genuinely distinct presets, no two icons the same shape ---
+  homeBaseAction: simple(ShapeType.actionButtonHome, { w: 1.7, h: 1.7 }),
+  infoAction: simple(ShapeType.actionButtonInformation, { w: 1.7, h: 1.7 }),
+  helpAction: simple(ShapeType.actionButtonHelp, { w: 1.7, h: 1.7 }),
+  audioAction: simple(ShapeType.actionButtonSound, { w: 1.7, h: 1.7 }),
+  videoAction: simple(ShapeType.actionButtonMovie, { w: 1.7, h: 1.7 }),
+  documentAction: simple(ShapeType.actionButtonDocument, { w: 1.7, h: 1.7 }),
+  returnAction: simple(ShapeType.actionButtonReturn, { w: 1.7, h: 1.7 }),
+  startPoint: simple(ShapeType.actionButtonBeginning, { w: 1.7, h: 1.7 }),
+  endPoint: simple(ShapeType.actionButtonEnd, { w: 1.7, h: 1.7 }),
+  nextStep: simple(ShapeType.actionButtonForwardNext, { w: 1.7, h: 1.7 }),
+  previousStep: simple(ShapeType.actionButtonBackPrevious, { w: 1.7, h: 1.7 }),
+  redirectBent: simple(ShapeType.bentArrow, { w: 1.8, h: 1.6 }),
+  escalationArrow: simple(ShapeType.bentUpArrow, { w: 1.6, h: 1.8 }),
+  partialCycle: simple(ShapeType.blockArc, { w: 1.8, h: 1.8 }),
+  scopeBracket: simple(ShapeType.bracketPair, { w: 1.0, h: 1.8 }),
+  calloutNote: simple(ShapeType.callout2, { w: 1.9, h: 1.4 }),
+  addMetric: simple(ShapeType.chartPlus, { w: 1.7, h: 1.7 }),
+  featuredMetric: simple(ShapeType.chartStar, { w: 1.7, h: 1.7 }),
+  metricAlert: simple(ShapeType.chartX, { w: 1.7, h: 1.7 }),
+  segmentShare: simple(ShapeType.chord, { w: 1.6, h: 1.6 }),
+  cornerElement: simple(ShapeType.corner, { w: 1.6, h: 1.6 }),
+  declineArrow: simple(ShapeType.curvedDownArrow, { w: 1.7, h: 1.5 }),
+  redirectLeft: simple(ShapeType.curvedLeftArrow, { w: 1.6, h: 1.6 }),
+  redirectRight: simple(ShapeType.curvedRightArrow, { w: 1.6, h: 1.6 }),
+  upticknArrow: simple(ShapeType.curvedUpArrow, { w: 1.7, h: 1.5 }),
+  multiPointNode: simple(ShapeType.decagon, { w: 1.7, h: 1.7 }),
+  diagonalMarker: simple(ShapeType.diagStripe, { w: 1.6, h: 1.2 }),
+  dualSignal: simple(ShapeType.doubleWave, { w: 2.0, h: 1.0 }),
+  decreaseAlert: simple(ShapeType.downArrowCallout, { w: 1.6, h: 1.7 }),
+  curvedBanner: simple(ShapeType.ellipseRibbon, { w: 2.0, h: 1.0 }),
+  bannerAccent: simple(ShapeType.ellipseRibbon2, { w: 2.0, h: 1.0 }),
+  alternateProcess: simple(ShapeType.flowChartAlternateProcess, { w: 1.8, h: 1.3 }),
+  collationStep: simple(ShapeType.flowChartCollate, { w: 1.4, h: 1.7 }),
+  connectorPoint: simple(ShapeType.flowChartConnector, { w: 1.5, h: 1.5 }),
+  decisionPoint: simple(ShapeType.flowChartDecision, { w: 1.8, h: 1.4 }),
+  delayWait: simple(ShapeType.flowChartDelay, { w: 1.6, h: 1.4 }),
+  displayOutput: simple(ShapeType.flowChartDisplay, { w: 1.7, h: 1.3 }),
+  processDocument: simple(ShapeType.flowChartDocument, { w: 1.7, h: 1.3 }),
+  extractStep: simple(ShapeType.flowChartExtract, { w: 1.5, h: 1.4 }),
+  inputOutput: simple(ShapeType.flowChartInputOutput, { w: 1.8, h: 1.3 }),
+  internalStorage: simple(ShapeType.flowChartInternalStorage, { w: 1.6, h: 1.4 }),
+  diskStorage: simple(ShapeType.flowChartMagneticDisk, { w: 1.5, h: 1.4 }),
+  drumStorage: simple(ShapeType.flowChartMagneticDrum, { w: 1.4, h: 1.6 }),
+  tapeArchive: simple(ShapeType.flowChartMagneticTape, { w: 1.6, h: 1.4 }),
+  manualInput: simple(ShapeType.flowChartManualInput, { w: 1.7, h: 1.3 }),
+  manualOperation: simple(ShapeType.flowChartManualOperation, { w: 1.6, h: 1.4 }),
+  mergeStep: simple(ShapeType.flowChartMerge, { w: 1.5, h: 1.4 }),
+  multiDocument: simple(ShapeType.flowChartMultidocument, { w: 1.8, h: 1.4 }),
+  offlineStorage: simple(ShapeType.flowChartOfflineStorage, { w: 1.5, h: 1.5 }),
+  offPageRef: simple(ShapeType.flowChartOffpageConnector, { w: 1.5, h: 1.6 }),
+  onlineStorage: simple(ShapeType.flowChartOnlineStorage, { w: 1.5, h: 1.4 }),
+  orBranch: simple(ShapeType.flowChartOr, { w: 1.5, h: 1.5 }),
+  predefinedProcess: simple(ShapeType.flowChartPredefinedProcess, { w: 1.8, h: 1.3 }),
+  preparationStep: simple(ShapeType.flowChartPreparation, { w: 1.8, h: 1.3 }),
+  processStep: simple(ShapeType.flowChartProcess, { w: 1.8, h: 1.3 }),
+  legacyRecord: simple(ShapeType.flowChartPunchedCard, { w: 1.7, h: 1.3 }),
+  legacyArchive: simple(ShapeType.flowChartPunchedTape, { w: 1.7, h: 1.2 }),
+  sortStep: simple(ShapeType.flowChartSort, { w: 1.6, h: 1.6 }),
+  aggregationPoint: simple(ShapeType.flowChartSummingJunction, { w: 1.5, h: 1.5 }),
+  terminator: simple(ShapeType.flowChartTerminator, { w: 1.8, h: 1.1 }),
+  partialFrame: simple(ShapeType.halfFrame, { w: 1.6, h: 1.6 }),
+  sevenPointNode: simple(ShapeType.heptagon, { w: 1.7, h: 1.7 }),
+  directionalMarker: simple(ShapeType.homePlate, { w: 1.8, h: 1.2 }),
+  scrollRecord: simple(ShapeType.horizontalScroll, { w: 1.9, h: 1.0 }),
+  backDirection: simple(ShapeType.leftArrow, { w: 1.7, h: 1.2, filled: true }),
+  backAlert: simple(ShapeType.leftArrowCallout, { w: 1.7, h: 1.3 }),
+  openingScope: simple(ShapeType.leftBrace, { w: 0.7, h: 1.8 }),
+  rangeStart: simple(ShapeType.leftBracket, { w: 0.6, h: 1.8 }),
+  reverseCycle: simple(ShapeType.leftCircularArrow, { w: 1.7, h: 1.7 }),
+  bidirectional: simple(ShapeType.leftRightArrow, { w: 1.9, h: 1.1, filled: true }),
+  twoWayAlert: simple(ShapeType.leftRightArrowCallout, { w: 1.9, h: 1.3 }),
+  dualBanner: simple(ShapeType.leftRightRibbon, { w: 2.0, h: 1.0 }),
+  multiDirection: simple(ShapeType.leftRightUpArrow, { w: 1.7, h: 1.7 }),
+  upperLeftDirection: simple(ShapeType.leftUpArrow, { w: 1.7, h: 1.7 }),
+  dividerLine: simple(ShapeType.lineInv, { w: 1.9, h: 0.05 }),
+  divisionRatio: simple(ShapeType.mathDivide, { w: 1.3, h: 1.3, filled: true }),
+  parityBalance: simple(ShapeType.mathEqual, { w: 1.3, h: 1.3, filled: true }),
+  multiplierIcon: simple(ShapeType.mathMultiply, { w: 1.3, h: 1.3, filled: true }),
+  varianceIcon: simple(ShapeType.mathNotEqual, { w: 1.3, h: 1.3, filled: true }),
+  restrictedIcon: simple(ShapeType.noSmoking, { w: 1.7, h: 1.7 }),
+  asymmetricPanel: simple(ShapeType.nonIsoscelesTrapezoid, { w: 1.8, h: 1.2 }),
+  fastForward: simple(ShapeType.notchedRightArrow, { w: 1.8, h: 1.2, filled: true }),
+  skewedPanel: simple(ShapeType.parallelogram, { w: 1.8, h: 1.2 }),
+  segmentWedge: simple(ShapeType.pieWedge, { w: 1.3, h: 1.7 }),
+  tabbedRecord: simple(ShapeType.plaqueTabs, { w: 1.8, h: 1.3 }),
+  fourWayFlow: simple(ShapeType.quadArrow, { w: 1.8, h: 1.8 }),
+  fourWayAlert: simple(ShapeType.quadArrowCallout, { w: 1.8, h: 1.8 }),
+  bannerRibbon: simple(ShapeType.ribbon, { w: 2.0, h: 1.0 }),
+  forwardDirection: simple(ShapeType.rightArrow, { w: 1.7, h: 1.2, filled: true }),
+  forwardAlert: simple(ShapeType.rightArrowCallout, { w: 1.7, h: 1.3 }),
+  closingScope: simple(ShapeType.rightBrace, { w: 0.7, h: 1.8 }),
+  rangeEnd: simple(ShapeType.rightBracket, { w: 0.6, h: 1.8 }),
+  roundedPanelA: simple(ShapeType.round1Rect, { w: 1.8, h: 1.3 }),
+  snippedPanel: simple(ShapeType.snip2SameRect, { w: 1.8, h: 1.3 }),
+  rightTriangleNode: simple(ShapeType.rtTriangle, { w: 1.6, h: 1.6 }),
+  satisfactionIcon: simple(ShapeType.smileyFace, { w: 1.7, h: 1.7 }),
+  sparkleStar: simple(ShapeType.star4, { w: 1.6, h: 1.6, filled: true }),
+  sixPointStar: simple(ShapeType.star6, { w: 1.6, h: 1.6 }),
+  eightPointStar: simple(ShapeType.star8, { w: 1.6, h: 1.6 }),
+  twelvePointStar: simple(ShapeType.star12, { w: 1.6, h: 1.6 }),
+  accelerateArrow: simple(ShapeType.stripedRightArrow, { w: 1.8, h: 1.2 }),
+  momentumArrow: simple(ShapeType.swooshArrow, { w: 1.7, h: 1.7, filled: true }),
+  verticalRange: simple(ShapeType.upDownArrow, { w: 1.1, h: 1.8, filled: true }),
+  verticalAlert: simple(ShapeType.upDownArrowCallout, { w: 1.3, h: 1.8 }),
+  reversalArrow: simple(ShapeType.uturnArrow, { w: 1.6, h: 1.7 }),
+  roundedCallout: simple(ShapeType.wedgeEllipseCallout, { w: 1.9, h: 1.4 }),
+  squareCallout: simple(ShapeType.wedgeRectCallout, { w: 1.9, h: 1.4 }),
+  annotatedNote: simple(ShapeType.borderCallout1, { w: 1.8, h: 1.4 }),
 };
 
 const INDUSTRY_LIBRARY = [
@@ -863,6 +973,20 @@ const INDUSTRY_LIBRARY = [
       { key: "listIcon", name: "List View", words: "List · Agenda · Items" },
       { key: "pinLocation", name: "Location", words: "Location · Site · Address" },
       { key: "filterFunnel", name: "Filter", words: "Filter · Sort · Refine" },
+      { key: "helpAction", name: "Help", words: "Help Center · FAQ · Support" },
+      { key: "infoAction", name: "Information", words: "Information · Details · About" },
+      { key: "audioAction", name: "Audio", words: "Audio · Sound · Voice" },
+      { key: "videoAction", name: "Video", words: "Video · Media Playback" },
+      { key: "returnAction", name: "Undo", words: "Undo · Return · Revert" },
+      { key: "nextStep", name: "Next", words: "Next · Forward · Continue" },
+      { key: "previousStep", name: "Previous", words: "Previous · Back · Prior" },
+      { key: "bidirectional", name: "Exchange", words: "Two-Way · Exchange · Sync" },
+      { key: "verticalRange", name: "Range", words: "Range · Scale · Span" },
+      { key: "decisionPoint", name: "Decision", words: "Decision · Choice · Branch" },
+      { key: "satisfactionIcon", name: "Feedback", words: "Feedback · Satisfaction · Survey" },
+      { key: "sparkleStar", name: "Highlight", words: "Highlight · New · Featured" },
+      { key: "annotatedNote", name: "Note", words: "Note · Annotation · Comment" },
+      { key: "restrictedIcon", name: "Restricted", words: "Restricted · Prohibited · Blocked" },
     ],
   },
   {
@@ -888,6 +1012,22 @@ const INDUSTRY_LIBRARY = [
       { key: "mailIcon", name: "Statements Delivery", words: "Statements · Correspondence" },
       { key: "lock", name: "Data Security", words: "Data Security · Privacy · Encryption" },
       { key: "starRating", name: "Credit Score", words: "Credit Score · Rating · Standing" },
+      { key: "divisionRatio", name: "Ratios", words: "Financial Ratios · Metrics" },
+      { key: "parityBalance", name: "Balance Sheet", words: "Balance Sheet · Equilibrium" },
+      { key: "multiplierIcon", name: "Leverage", words: "Leverage · Multiplier · Growth Factor" },
+      { key: "decisionPoint", name: "Underwriting", words: "Underwriting Decision · Approval" },
+      { key: "terminator", name: "Account Close", words: "Account Closure · Settlement" },
+      { key: "processStep", name: "Transaction Processing", words: "Transaction Processing · Workflow" },
+      { key: "internalStorage", name: "Ledger", words: "Ledger · Internal Records" },
+      { key: "verticalRange", name: "Rate Range", words: "Interest Rate Range · Spread" },
+      { key: "fastForward", name: "Fast Payments", words: "Instant Payments · Fast Settlement" },
+      { key: "bannerRibbon", name: "Premium Tier", words: "Premium Tier · Preferred Status" },
+      { key: "rightTriangleNode", name: "Yield Curve", words: "Yield Curve · Rate Trend" },
+      { key: "multiDocument", name: "Filings", words: "Regulatory Filings · Multi-Document" },
+      { key: "offlineStorage", name: "Cold Storage Assets", words: "Cold Storage · Reserve Assets" },
+      { key: "onlineStorage", name: "Digital Banking", words: "Digital Banking · Online Access" },
+      { key: "forwardDirection", name: "Growth Trajectory", words: "Growth Trajectory · Forecast" },
+      { key: "twelvePointStar", name: "Premier Client", words: "Premier Client · VIP Status" },
     ],
   },
   {
@@ -913,6 +1053,22 @@ const INDUSTRY_LIBRARY = [
       { key: "starRating", name: "Quality", words: "Quality · Grade · Standard" },
       { key: "scrollDocument", name: "Case History", words: "Case History · Patient Record" },
       { key: "phoneIcon", name: "Patient Support", words: "Patient Support Line · Contact" },
+      { key: "decisionPoint", name: "Go/No-Go", words: "Go/No-Go Decision · Trial Gate" },
+      { key: "processStep", name: "Protocol Step", words: "Protocol Step · Trial Process" },
+      { key: "terminator", name: "Trial Endpoint", words: "Trial Endpoint · Study Completion" },
+      { key: "multiDocument", name: "Regulatory Dossier", words: "Regulatory Dossier · Submission Package" },
+      { key: "internalStorage", name: "Sample Repository", words: "Sample Repository · Specimen Storage" },
+      { key: "manualInput", name: "Data Capture", words: "Manual Data Capture · CRF" },
+      { key: "satisfactionIcon", name: "Patient Outcome", words: "Patient-Reported Outcome · PRO" },
+      { key: "restrictedIcon", name: "Contraindication", words: "Contraindication · Restricted Use" },
+      { key: "sortStep", name: "Cohort Stratification", words: "Cohort Stratification · Patient Sorting" },
+      { key: "aggregationPoint", name: "Data Pooling", words: "Data Pooling · Meta-Analysis" },
+      { key: "multiplierIcon", name: "Scale-Up", words: "Manufacturing Scale-Up · Titer" },
+      { key: "offPageRef", name: "Referral", words: "Patient Referral · Site Transfer" },
+      { key: "bannerRibbon", name: "Breakthrough Designation", words: "Breakthrough Designation · Priority Review" },
+      { key: "rightTriangleNode", name: "Dose Escalation", words: "Dose Escalation · Titration" },
+      { key: "forwardDirection", name: "Pipeline Progression", words: "Pipeline Progression · Phase Advance" },
+      { key: "sparkleStar", name: "Novel Therapy", words: "Novel Therapy · Innovation" },
     ],
   },
   {
@@ -936,6 +1092,22 @@ const INDUSTRY_LIBRARY = [
       { key: "scrollDocument", name: "Work Order", words: "Work Order · Traveler · Routing" },
       { key: "cubeBlock", name: "Inventory", words: "Inventory · SKU · Stock" },
       { key: "trashIcon", name: "Waste Reduction", words: "Waste Reduction · Scrap · Lean" },
+      { key: "decisionPoint", name: "Go/No-Go Inspection", words: "Quality Gate · Go/No-Go" },
+      { key: "processStep", name: "Process Step", words: "Manufacturing Process Step" },
+      { key: "terminator", name: "Line Boundary", words: "Line Start/Stop · Shift Boundary" },
+      { key: "manualOperation", name: "Manual Assembly", words: "Manual Assembly · Hand Operation" },
+      { key: "delayWait", name: "Changeover Delay", words: "Changeover Delay · Downtime" },
+      { key: "mergeStep", name: "Line Merge", words: "Line Merge · Assembly Convergence" },
+      { key: "sortStep", name: "Sorting Station", words: "Sorting Station · Grading" },
+      { key: "internalStorage", name: "WIP Storage", words: "Work-in-Process Storage" },
+      { key: "onlineStorage", name: "MES Data", words: "MES Data · Real-Time Records" },
+      { key: "multiDocument", name: "Traveler Packet", words: "Traveler Packet · Routing Documents" },
+      { key: "forwardDirection", name: "Throughput", words: "Throughput · Line Speed" },
+      { key: "fastForward", name: "Cycle Time Reduction", words: "Cycle Time Reduction · Speed-Up" },
+      { key: "fourWayFlow", name: "Cross-Docking", words: "Cross-Docking · Multi-Directional Flow" },
+      { key: "restrictedIcon", name: "Hazard Zone", words: "Hazard Zone · Restricted Access" },
+      { key: "rightTriangleNode", name: "Ramp-Up", words: "Production Ramp-Up" },
+      { key: "aggregationPoint", name: "Consolidation Point", words: "Consolidation Point · Batch Aggregation" },
     ],
   },
   {
@@ -959,6 +1131,22 @@ const INDUSTRY_LIBRARY = [
       { key: "peopleIcon", name: "IT Support", words: "IT Support · Help Desk" },
       { key: "messageBubble", name: "Collaboration", words: "Collaboration · Messaging · Chat" },
       { key: "calmWave", name: "Bandwidth", words: "Bandwidth · Throughput · Capacity" },
+      { key: "decisionPoint", name: "Routing Decision", words: "Routing Decision · Load Balancing" },
+      { key: "processStep", name: "Pipeline Step", words: "Pipeline Step · Build Process" },
+      { key: "terminator", name: "Session Boundary", words: "Session Start/End" },
+      { key: "internalStorage", name: "Cache", words: "Cache · In-Memory Storage" },
+      { key: "onlineStorage", name: "Cloud Storage", words: "Cloud Storage · Object Store" },
+      { key: "offlineStorage", name: "Cold Backup", words: "Cold Backup · Archive Storage" },
+      { key: "multiDocument", name: "API Docs", words: "API Documentation · Specs" },
+      { key: "manualInput", name: "Configuration Input", words: "Manual Configuration · Setup" },
+      { key: "fourWayFlow", name: "Mesh Network", words: "Mesh Network · Multi-Path Routing" },
+      { key: "bidirectional", name: "Duplex Link", words: "Full-Duplex Link · Two-Way Data" },
+      { key: "reverseCycle", name: "Rollback", words: "Rollback · Version Revert" },
+      { key: "forwardDirection", name: "Deployment", words: "Deployment · Release Forward" },
+      { key: "restrictedIcon", name: "Access Denied", words: "Access Denied · Firewall Block" },
+      { key: "sparkleStar", name: "New Release", words: "New Release · Feature Launch" },
+      { key: "fastForward", name: "Low Latency", words: "Low Latency · High Speed" },
+      { key: "multiplierIcon", name: "Scalability", words: "Scalability · Elastic Compute" },
     ],
   },
   {
@@ -981,6 +1169,22 @@ const INDUSTRY_LIBRARY = [
       { key: "sealBadge", name: "Certification", words: "Environmental Certification · ESG Rating" },
       { key: "wrenchIcon", name: "Maintenance", words: "Equipment Maintenance · Service" },
       { key: "calmWave", name: "Grid Load", words: "Grid Load · Demand · Capacity" },
+      { key: "decisionPoint", name: "Load Shedding Decision", words: "Load Shedding · Demand Response" },
+      { key: "processStep", name: "Generation Process", words: "Power Generation Process" },
+      { key: "terminator", name: "Outage Boundary", words: "Outage Start/End · Restoration" },
+      { key: "internalStorage", name: "Fuel Reserve", words: "Fuel Reserve · Internal Storage" },
+      { key: "onlineStorage", name: "SCADA Data", words: "SCADA Data · Telemetry" },
+      { key: "multiDocument", name: "Compliance Filings", words: "Regulatory Filings · Compliance Docs" },
+      { key: "manualOperation", name: "Field Switching", words: "Manual Field Switching · Isolation" },
+      { key: "fourWayFlow", name: "Grid Interconnection", words: "Grid Interconnection · Multi-Feed" },
+      { key: "forwardDirection", name: "Capacity Growth", words: "Capacity Growth · Expansion" },
+      { key: "restrictedIcon", name: "Hazard Area", words: "Hazard Area · Restricted Zone" },
+      { key: "rightTriangleNode", name: "Peak Demand", words: "Peak Demand · Load Ramp" },
+      { key: "aggregationPoint", name: "Substation", words: "Substation · Aggregation Node" },
+      { key: "sparkleStar", name: "New Capacity", words: "New Capacity · Commissioning" },
+      { key: "fastForward", name: "Rapid Response", words: "Rapid Response · Fast Ramp" },
+      { key: "bidirectional", name: "Bidirectional Flow", words: "Bidirectional Power Flow · Net Metering" },
+      { key: "offlineStorage", name: "Strategic Reserve", words: "Strategic Reserve · Backup Fuel" },
     ],
   },
   {
@@ -1004,6 +1208,22 @@ const INDUSTRY_LIBRARY = [
       { key: "phoneIcon", name: "Client Line", words: "Client Relationship · Contact" },
       { key: "groupBracket", name: "Alignment", words: "Stakeholder Alignment · Grouping" },
       { key: "mailIcon", name: "Correspondence", words: "Client Correspondence · Updates" },
+      { key: "decisionPoint", name: "Engagement Decision", words: "Engagement Go/No-Go" },
+      { key: "processStep", name: "Methodology Step", words: "Methodology Step · Delivery Process" },
+      { key: "terminator", name: "Engagement Boundary", words: "Engagement Kickoff/Close" },
+      { key: "multiDocument", name: "Deliverables Package", words: "Deliverables Package · Reports" },
+      { key: "manualInput", name: "Discovery Interview", words: "Discovery Interview · Data Gathering" },
+      { key: "forwardDirection", name: "Progress", words: "Engagement Progress · Milestone" },
+      { key: "fastForward", name: "Accelerated Delivery", words: "Accelerated Delivery · Fast Track" },
+      { key: "satisfactionIcon", name: "Client Feedback", words: "Client Feedback · Satisfaction Survey" },
+      { key: "sparkleStar", name: "Value Add", words: "Value-Add · Differentiator" },
+      { key: "aggregationPoint", name: "Synthesis", words: "Insight Synthesis · Aggregation" },
+      { key: "bidirectional", name: "Two-Way Feedback", words: "Two-Way Feedback Loop" },
+      { key: "annotatedNote", name: "Recommendation", words: "Recommendation · Advisory Note" },
+      { key: "bannerRibbon", name: "Trusted Advisor", words: "Trusted Advisor Status" },
+      { key: "reverseCycle", name: "Course Correction", words: "Course Correction · Iteration" },
+      { key: "twelvePointStar", name: "Preferred Partner", words: "Preferred Partner · Elite Status" },
+      { key: "offPageRef", name: "Referral Network", words: "Referral · Partner Network" },
     ],
   },
   {
@@ -1026,6 +1246,21 @@ const INDUSTRY_LIBRARY = [
       { key: "peopleIcon", name: "Human-in-the-Loop", words: "Human-in-the-Loop · Oversight" },
       { key: "sealBadge", name: "Responsible AI", words: "Responsible AI · Governance · Ethics" },
       { key: "addPlus", name: "Augmentation", words: "AI Augmentation · Enhancement" },
+      { key: "decisionPoint", name: "Decision Boundary", words: "Decision Boundary · Classification" },
+      { key: "processStep", name: "Inference Step", words: "Inference Pipeline Step" },
+      { key: "terminator", name: "Training Boundary", words: "Training Start/End · Epoch Boundary" },
+      { key: "internalStorage", name: "Feature Store", words: "Feature Store · Model Inputs" },
+      { key: "onlineStorage", name: "Vector Database", words: "Vector Database · Embeddings Store" },
+      { key: "manualInput", name: "Prompt Input", words: "Prompt Engineering · Manual Input" },
+      { key: "fourWayFlow", name: "Multi-Agent Flow", words: "Multi-Agent · Orchestration" },
+      { key: "reverseCycle", name: "Retraining Loop", words: "Retraining Loop · Feedback Cycle" },
+      { key: "forwardDirection", name: "Model Deployment", words: "Model Deployment · Forward Pass" },
+      { key: "restrictedIcon", name: "Guardrails", words: "AI Guardrails · Content Restriction" },
+      { key: "sparkleStar", name: "Emerging Capability", words: "Emerging Capability · New Model" },
+      { key: "multiplierIcon", name: "Compute Scaling", words: "Compute Scaling · GPU Multiplier" },
+      { key: "aggregationPoint", name: "Ensemble Model", words: "Ensemble Model · Aggregation" },
+      { key: "annotatedNote", name: "Model Card", words: "Model Card · Documentation" },
+      { key: "bidirectional", name: "Human Feedback Loop", words: "RLHF · Human Feedback Loop" },
     ],
   },
   {
@@ -1047,6 +1282,22 @@ const INDUSTRY_LIBRARY = [
       { key: "starRating", name: "Data Confidence", words: "Data Confidence · Quality Score" },
       { key: "document", name: "Reports", words: "Reports · Data Documentation" },
       { key: "scrollDocument", name: "Audit Trail", words: "Audit Trail · Data Lineage" },
+      { key: "decisionPoint", name: "Data Routing Decision", words: "Data Routing · Conditional Logic" },
+      { key: "processStep", name: "Transformation Step", words: "Data Transformation Step" },
+      { key: "terminator", name: "Pipeline Boundary", words: "Pipeline Start/End" },
+      { key: "internalStorage", name: "Staging Area", words: "Staging Area · Internal Store" },
+      { key: "onlineStorage", name: "Data Warehouse", words: "Data Warehouse · Cloud Store" },
+      { key: "offlineStorage", name: "Cold Archive", words: "Cold Archive · Historical Data" },
+      { key: "manualInput", name: "Manual Entry", words: "Manual Data Entry" },
+      { key: "aggregationPoint", name: "Rollup", words: "Data Rollup · Aggregation" },
+      { key: "sortStep", name: "Sort & Rank", words: "Sort & Rank · Ordering" },
+      { key: "mergeStep", name: "Data Merge", words: "Data Merge · Join" },
+      { key: "collationStep", name: "Data Collation", words: "Data Collation · Compilation" },
+      { key: "multiDocument", name: "Data Catalog", words: "Data Catalog · Metadata Docs" },
+      { key: "restrictedIcon", name: "Access Restriction", words: "Row-Level Security · Restriction" },
+      { key: "forwardDirection", name: "Downstream Flow", words: "Downstream Data Flow" },
+      { key: "reverseCycle", name: "Data Refresh", words: "Data Refresh Cycle" },
+      { key: "sparkleStar", name: "New Insight", words: "New Insight · Anomaly Detected" },
     ],
   },
   {
@@ -1068,6 +1319,22 @@ const INDUSTRY_LIBRARY = [
       { key: "keyIcon", name: "Digital Access", words: "Digital Access · Identity Management" },
       { key: "sealBadge", name: "Maturity Certification", words: "Digital Maturity · Certification" },
       { key: "cloudSync", name: "Cloud-Native", words: "Cloud-Native · Sync · Scalability" },
+      { key: "decisionPoint", name: "Build vs Buy", words: "Build vs. Buy Decision" },
+      { key: "processStep", name: "Transformation Step", words: "Transformation Roadmap Step" },
+      { key: "terminator", name: "Program Milestone", words: "Program Start/End · Milestone" },
+      { key: "alternateProcess", name: "Alternate Path", words: "Alternate Delivery Path" },
+      { key: "predefinedProcess", name: "Reusable Module", words: "Reusable Module · Predefined Process" },
+      { key: "preparationStep", name: "Readiness Assessment", words: "Readiness Assessment · Preparation" },
+      { key: "multiDocument", name: "Change Playbook", words: "Change Management Playbook" },
+      { key: "fourWayFlow", name: "Omnichannel", words: "Omnichannel · Multi-Channel Flow" },
+      { key: "reverseCycle", name: "Iterative Rollout", words: "Iterative Rollout · Agile Cycle" },
+      { key: "forwardDirection", name: "Modernization Path", words: "Modernization Path · Forward Migration" },
+      { key: "sparkleStar", name: "Innovation Spark", words: "Innovation Spark · New Capability" },
+      { key: "multiplierIcon", name: "Scale Effect", words: "Scale Effect · Network Effect" },
+      { key: "bannerRibbon", name: "Digital Leader", words: "Digital Leader Status · Recognition" },
+      { key: "restrictedIcon", name: "Legacy Constraint", words: "Legacy Constraint · Technical Debt" },
+      { key: "annotatedNote", name: "Lessons Learned", words: "Lessons Learned · Retrospective Note" },
+      { key: "offPageRef", name: "Cross-Functional Link", words: "Cross-Functional Reference" },
     ],
   },
 ];
@@ -1137,7 +1404,7 @@ function build() {
       x: MARGIN, y: 3.55, w: 10, h: 1.1, fontFace: TITLE_FONT, fontSize: 40, bold: true,
       color: THEME.onDark, align: "left", margin: 0,
     });
-    s.addText("Editable line icons across 10 categories — every icon is a native PowerPoint shape (recolor, resize, restyle freely). Each category page groups its unique icons first, then tints repeats in the secondary color to fill a dense reference grid, all captioned with searchable keywords.", {
+    s.addText("Editable line icons across 10 categories — every icon is a native PowerPoint shape (recolor, resize, restyle freely). Every icon on every page is genuinely unique — no repeats, no recolored duplicates — each captioned with searchable keywords.", {
       x: MARGIN, y: 4.75, w: 9.8, h: 0.95, fontFace: BODY_FONT, fontSize: 14,
       color: "D7DCE6", align: "left", margin: 0, lineSpacingMultiple: 1.25,
     });
@@ -1148,45 +1415,52 @@ function build() {
     });
   }
 
-  // ---- CATEGORY PAGES: dense ~60-icon grid, grouped by topic --------------
-  const GRID_COLS = 10;
-  const GRID_ROWS = 6;
-  const GRID_TOTAL = GRID_COLS * GRID_ROWS;
+  // ---- CATEGORY PAGES: every icon on the page is unique — no repeats -----
+  const GRID_COLS = 7;
   const ICON_R = 0.19;
+
+  // Sanity check: catch a typo'd icon key or an accidental duplicate within
+  // one category before we spend time rendering — both are real defects here.
+  INDUSTRY_LIBRARY.forEach((industry) => {
+    const seen = new Set();
+    industry.icons.forEach((ic) => {
+      if (!ICONS[ic.key]) throw new Error(`Unknown icon key "${ic.key}" in "${industry.name}"`);
+      if (seen.has(ic.key)) throw new Error(`Duplicate icon key "${ic.key}" in "${industry.name}"`);
+      seen.add(ic.key);
+    });
+  });
 
   INDUSTRY_LIBRARY.forEach((industry) => {
     n++;
     const s = pres.addSlide({ masterName: "MASTER" });
     const uniqueCount = industry.icons.length;
+    const rows = Math.ceil(uniqueCount / GRID_COLS);
     slideHeader(
       s,
       industry.name,
-      `${uniqueCount} unique icons, repeated/tinted in the secondary color to fill the grid — editable natively in PowerPoint`
+      `${uniqueCount} unique icons — every one is a distinct native PowerPoint shape, none repeated`
     );
     const gridTop = 1.55;
     const colW = (PAGE_W - MARGIN * 2) / GRID_COLS;
-    const rowH = (PAGE_H - gridTop - 0.35) / GRID_ROWS;
-    for (let i = 0; i < GRID_TOTAL; i++) {
+    const rowH = (PAGE_H - gridTop - 0.35) / rows;
+    industry.icons.forEach((ic, i) => {
       const col = i % GRID_COLS;
       const row = Math.floor(i / GRID_COLS);
-      const ic = industry.icons[i % uniqueCount];
-      const isRepeat = i >= uniqueCount;
-      const color = isRepeat ? THEME.slate : THEME.accent;
       const cx = MARGIN + col * colW + colW / 2;
       const cellTop = gridTop + row * rowH;
-      const cy = cellTop + 0.24;
-      ICONS[ic.key](s, cx, cy, ICON_R, color);
+      const cy = cellTop + Math.min(rowH * 0.32, 0.3);
+      ICONS[ic.key](s, cx, cy, ICON_R, THEME.accent);
       s.addText(ic.name, {
-        x: cx - colW / 2 + 0.02, y: cellTop + 0.42, w: colW - 0.04, h: 0.16,
+        x: cx - colW / 2 + 0.02, y: cy + 0.2, w: colW - 0.04, h: 0.16,
         fontFace: BODY_FONT, fontSize: 6.5, bold: true, color: NAVY_TEXT,
         align: "center", margin: 0,
       });
       s.addText(ic.words, {
-        x: cx - colW / 2 + 0.02, y: cellTop + 0.58, w: colW - 0.04, h: 0.32,
-        fontFace: BODY_FONT, fontSize: 5, italic: true, color: THEME.muted,
+        x: cx - colW / 2 + 0.02, y: cy + 0.37, w: colW - 0.04, h: rowH - (cy - cellTop) - 0.4,
+        fontFace: BODY_FONT, fontSize: 5.5, italic: true, color: THEME.muted,
         align: "center", margin: 0, lineSpacingMultiple: 1.05,
       });
-    }
+    });
   });
 
   const outPath = `${__dirname}/Icon-Library-${isDark ? "Dark" : "Light"}.pptx`;

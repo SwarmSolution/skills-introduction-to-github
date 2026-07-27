@@ -20,42 +20,47 @@ gaps").
 Source: `build-consulting-template.js`. Regenerate with `node build-consulting-template.js light`
 or `... dark`.
 
-## The standalone icon library (dense reference grid)
+## The standalone icon library (dense reference grid, all-unique)
 
 - `Icon-Library-Light.pptx` / `Icon-Library-Dark.pptx` — 11 slides: cover + **10 category pages**
-  (the original 9 plus "Universal / General Business"), each a dense **60-icon grid** (10 columns ×
-  6 rows) matching a reference screenshot the user supplied of a typical dense PowerPoint icon
-  sheet. Per category: **16-24 genuinely unique icons** (varies by topic) rendered in the accent
-  gold, then the same set **repeats, tinted in the secondary slate color**, cycling until the grid
-  is full at 60 — an intentional density technique, not duplicate content pretending to be unique.
-  Every icon still has its own small caption (name ~6.5pt bold + searchable keyword phrase ~5pt)
-  beneath it. No circle badges at this density (unlike the deck template's appendix) — matches the
-  plain, tightly-packed reference look the user asked for. Background stays exactly the same
-  navy/white/dark theming as every other file in this set — only the grid density and lack of
-  badges changed, not the color system.
+  ("Universal / General Business" plus 9 business topics). Each page is a grid (7 columns, rows
+  sized to fit) of **every icon on the page being genuinely unique — no repeats, no recolored
+  duplicates**. An earlier pass here filled the grid by cycling the same icons a second time in a
+  different tint; that was wrong and has been removed. The build script now runs a check at build
+  time that throws if any category ever contains a duplicate icon key or an unknown one, so this
+  can't silently regress.
+  Every icon has its own small caption (name ~6.5pt bold + searchable keyword phrase ~5.5pt)
+  beneath it, all in the accent gold. No circle badges at this density — matches the plain,
+  tightly-packed reference look the user asked for. Background stays exactly the same
+  navy/white/dark theming as every other file in this set.
 
 Source: `build-icon-library.js`. Regenerate with `node build-icon-library.js light` or `... dark`.
 
-## Categories and icon counts (standalone library)
+## Categories and icon counts (standalone library — all unique, verified at build time)
 
 | Category | Unique icons |
 |---|---|
-| Universal / General Business | 24 |
-| Financial Services | 20 |
-| Life Sciences | 20 |
-| Manufacturing & Industrial | 18 |
-| Technology & Telecom | 18 |
-| Energy & Utilities | 17 |
-| Professional Services | 18 |
-| Artificial Intelligence | 17 |
-| Data & Analytics | 16 |
-| Digital Transformation | 16 |
+| Universal / General Business | 38 |
+| Financial Services | 36 |
+| Life Sciences | 36 |
+| Manufacturing & Industrial | 34 |
+| Technology & Telecom | 34 |
+| Energy & Utilities | 33 |
+| Professional Services | 34 |
+| Artificial Intelligence | 32 |
+| Data & Analytics | 32 |
+| Digital Transformation | 32 |
 
-~204 unique icon designs total, most built from a shared catalog of ~90 draw functions (many are a
-single OOXML preset autoshape — star, heart, cloud, gear, hexagon, cylinder, speech-bubble callout,
-circular arrow, funnel, folder, etc. — reused across categories with topic-appropriate captions,
-same as real icon packs do; the rest are small 2-4 shape compositions for concepts without a direct
-preset, like DNA/genomics, a neural network diagram, or a factory).
+**341 unique icon designs total** (verified: no duplicate key within any single category), built
+from a shared catalog of ~180 draw functions. Most are a single OOXML preset autoshape — star,
+heart, cloud, gear, hexagon, cylinder, speech-bubble callout, circular arrow, funnel, folder, the
+full flowchart shape family (decision, process, terminator, storage, delay, merge, sort, etc.),
+directional arrows, math symbols, and more — reused across *different* categories with
+topic-appropriate captions (e.g. the same "decision diamond" shape is captioned "Underwriting" in
+Financial Services and "Go/No-Go" in Life Sciences); that cross-category reuse is normal for icon
+packs and is not what was wrong before. What changed is that **no category's own page repeats a
+shape it already used**. The rest of the catalog is small 2-4 shape compositions for concepts
+without a direct preset, like DNA/genomics, a neural network diagram, or a factory.
 
 ## Shared standards (all files)
 
@@ -86,10 +91,10 @@ Two references were used, neither copied from directly:
   metadata. Used only to confirm general enterprise-icon-library conventions (single-accent-color
   flat glyphs, grouped per category slide). Deleted from disk after review per the user's request —
   nothing from it was retained or embedded.
-- A screenshot of a generic "PowerPoint icons" stock pack showing a dense ~70-icon grid on a
-  gradient background with a title — used to calibrate density (~60/slide) and the plain,
-  caption-beneath-icon, no-badge layout. The gradient background was explicitly *not* adopted — this
-  library keeps the same navy/white/dark theming as the rest of the set.
+- A screenshot of a generic "PowerPoint icons" stock pack showing a dense icon grid on a gradient
+  background with a title — used to calibrate density and the plain, caption-beneath-icon, no-badge
+  layout. The gradient background was explicitly *not* adopted — this library keeps the same
+  navy/white/dark theming as the rest of the set.
 
 ## Known gaps / next steps
 
@@ -105,7 +110,8 @@ Two references were used, neither copied from directly:
   conventions (see above) rather than matching any specific firm's exact glyphs.
 - Visual rendering (LibreOffice → PDF → image) could not be QA'd in this environment — the
   conversion pipeline fails on any file here, not just this one. Validated instead via the pptx
-  skill's schema/structural validator (passed clean on all files) and a full text-content dump
-  (passed clean, no leftover/broken content, no missing icon lookups). Open the files in real
-  PowerPoint to do a final visual pass before using them client-facing — at 60 icons/slide small
-  layout issues are more likely than in the lighter-density files.
+  skill's schema/structural validator (passed clean on all files), a full text-content dump (passed
+  clean, no leftover/broken content), and a build-time check that every category's icon list has no
+  unknown or duplicate keys (also passed clean — see counts above). Open the files in real
+  PowerPoint to do a final visual pass before using them client-facing — at 32-38 icons/slide, small
+  layout/spacing issues are more likely than in a sparser deck.
