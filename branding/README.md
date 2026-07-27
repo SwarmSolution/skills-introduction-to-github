@@ -1,67 +1,58 @@
 # Company Brand Identity — Working Draft
 
-An original logo mark modeled on a real millstone face — a circular disc with straight grooves
-radiating out in sector groups and a small center spindle hole — six variations on that mark, a
-full brand guidelines document, and a ready-to-use letterhead, all on the same navy/slate/gold
-palette and Cambria/Calibri typography already established for `business-development/templates/`.
+An original logo mark, iterated in two rounds against two different reference photos, on the
+navy/slate/gold palette and Cambria/Calibri typography already established for
+`business-development/templates/`.
 
-**Revision note:** the first pass at this mark used tapered pointed blades and read as a
-compass/star, not a millstone. It's been rebuilt from the ground up: the outer silhouette is
-now a plain circle (a millstone is never spiky), and the "spokes" are thin straight-line grooves
-— a primary groove per sector plus shorter secondary grooves fanning within each sector, matching
-how an actual dressed millstone face looks, just simplified into clean brand-friendly line work
-instead of the reference photo's rough stone texture.
+**Revision history:**
+1. First pass used tapered pointed blades reaching the center — read as a compass/star.
+2. Second pass (still in `Brand-Guidelines.docx`/`Letterhead-Template.docx` below) switched to
+   thin straight-line grooves radiating from a small hub — closer, but too plain next to a
+   second, richer reference photo you then shared (a carved stone turbine/spiral texture with
+   concentric rings of tapered teeth around a raised center hub).
+3. **Current logo-only pass** (this section, `logo-concepts/`): rebuilt again around that second
+   reference — one or more **concentric rings of pointed, kite-shaped teeth** (tapered diamonds,
+   each contained within its own radial band rather than spiking to the center) wrapped around a
+   raised donut-shaped center hub, inside a plain circular rim. This is the one to review now.
 
-**Nothing here has a real company name yet** — every file uses `[COMPANY NAME]` /
-`[Tagline Placeholder]` brackets by design (per your choice to work in placeholder form for
-now). Swap those and regenerate once a name is locked in — see "Regenerating" below.
+**Nothing here has a real company name yet** — placeholder brackets throughout, per your choice
+to work in placeholder form for now.
 
-## Start here
+## The mark (current round)
 
-- **`Brand-Guidelines.docx`** — the full brand book: about this draft, color palette (light +
-  dark, hex codes), typography, logo usage rules (clear space, minimum size, do/don't), all
-  six logo concepts shown on light and dark backgrounds, the letterhead preview, and a
-  business card mockup (front + back). Read this first.
-- **`Letterhead-Template.docx`** — a real, usable Word letterhead (header with mark + name +
-  tagline, gold rule, footer with placeholder contact strip). Open it and start typing a
-  letter; the header/footer repeat automatically via the Word section headers/footers.
+Six pure icon-mark variations — no wordmark this round, per your "just the logo" request — each
+built from the same parts (a plain circular rim, one or more rings of pointed teeth, a raised
+center hub with a thin gold accent ring) but varying ring count, tooth count, and whether teeth
+are solid-filled or outline-only:
 
-## The mark
-
-Each concept is the same construction — a plain circle, divided into equal sectors by full-length
-radial grooves, with shorter secondary grooves fanning between them, plus a small center hole with
-a thin gold ring (the "spindle hole" on a real millstone). Concepts vary sector count and groove
-density, from a fine, dense texture closest to your reference photo down to a clean, minimal mark:
-
-| # | Lockup style | Sectors / secondary grooves |
+| # | Construction | Character |
 |---|---|---|
-| 1 | Icon-first, wordmark separate below | 6 sectors, 3 secondary — clean, moderate detail |
-| 2 | Combination lockup, icon beside name | 8 sectors, 2 secondary — **recommended primary/default** |
-| 3 | Icon-first, wordmark separate below | 10 sectors, 2 secondary — fine, dense texture |
-| 4 | Icon-first, wordmark stacked below | 7 sectors, 3 secondary — mid-density |
-| 5 | Combination lockup, icon beside name | 6 sectors, 1 secondary — flat/minimal |
-| 6 | Icon-first, wordmark separate below | 9 sectors, 4 secondary — densest, most literal to the reference photo |
+| 1 | Single ring, 12 solid teeth | Bold icon silhouette — reads well very small |
+| 2 | Two rings (10 inner / 14 outer), outline teeth | **Recommended primary** — closest balance of detail and clarity |
+| 3 | Two rings, inner solid + outer outline | Mixed depth, most dimensional-looking |
+| 4 | Single ring, 8 outline teeth | Cleanest/most minimal |
+| 5 | Two rings, both solid (12 inner / 16 outer) | Dense, most literal match to the reference's packed texture |
+| 6 | Three rings, outline (8 / 12 / 16) | Most literal to the reference's layered turbine detail |
 
-Concept 2 is used for the letterhead and business card mockups as a sensible default; nothing
-is finalized until you pick one (or ask for a hybrid of two). None of these carry a monogram
-this round — say the word if you'd like an initial worked into the center hole once a name exists.
+## Files (current round)
 
-## Files
-
-- `logo-concepts/concept-N-preview.png` — each concept shown on light *and* dark backgrounds
-  side by side, with its lockup label.
-- `logo-concepts/concept-N-icon-only.png` / `.svg` — the icon alone, on a white background,
-  favicon/app-icon ready.
-- `logo-concepts/concept-N-mark.svg` — the icon alone on a **transparent** background — the
-  one to drop into another document, a website, or open directly in Illustrator/Inkscape/Figma
-  to refine further. **This is the true editable source** — it's vector, so every groove, the
-  hub, and the rim are separate, fully editable paths/shapes, not a flattened image.
+- `logo-concepts/concept-N-preview.png` — each concept on light *and* dark backgrounds side by side.
+- `logo-concepts/concept-N-icon-only.png` / `.svg` — the icon alone on white, favicon/app-icon ready.
+- `logo-concepts/concept-N-mark.svg` — icon alone on a **transparent** background, true editable
+  vector source (every tooth, the hub, and the rim are separate paths — open directly in
+  Illustrator/Inkscape/Figma).
 - `logo-concepts/contact-sheet.png` — all six, stacked, for a quick side-by-side scan.
-- `mockups/letterhead-mockup.png`, `mockups/business-card-front.png`,
-  `mockups/business-card-back.png` — preview renders (used inside `Brand-Guidelines.docx`).
-- `build/` — the three Node scripts that generated everything (see below).
+- `build/generate-logo-concepts.js` — regenerate with `node generate-logo-concepts.js`.
 
-## Why SVG instead of native PowerPoint shapes this time
+## Not yet refreshed to this round
+
+`Brand-Guidelines.docx`, `Letterhead-Template.docx`, and everything in `mockups/` still show
+**round 2's** groove-based mark, not the current turbine-tooth mark above — they haven't been
+regenerated yet since you asked to iterate on just the logo this time. Once you pick a concept
+(or a hybrid) from the current round, say so and the guidelines doc, letterhead, and business
+card mockups will be rebuilt around it.
+
+## Why SVG instead of native PowerPoint shapes
 
 The icon library built earlier (`business-development/templates/Icon-Library-*.pptx`) uses
 native PowerPoint autoshapes because those icons live *inside decks* and need to stay editable
@@ -88,32 +79,28 @@ correctly in Word.
 
 ## Regenerating or customizing
 
-Each script writes to a local `out/` folder — copy results into this folder afterward.
+Writes to a local `out-v2/` folder — copy results into `logo-concepts/` afterward.
 
 ```
 cd branding/build
-npm install sharp docx    # one-time
-node generate-logo-concepts.js   # -> out/concept-*.png, *.svg, mockups
-node build-guidelines.js         # -> out/Brand-Guidelines.docx (reads generate's out/)
-node build-letterhead.js         # -> out/Letterhead-Template.docx
+npm install sharp    # one-time
+node generate-logo-concepts.js   # -> out-v2/v2-concept-*.png, *.svg, contact sheet
 ```
 
-To swap in the real name: edit `NAME` / `TAGLINE` at the top of
-`build/generate-logo-concepts.js`, and the two `[COMPANY NAME]` / `[TAGLINE PLACEHOLDER]`
-occurrences in `build-guidelines.js` and `build-letterhead.js`, then rerun all three.
+`build-guidelines.js` and `build-letterhead.js` in this same folder still target round 2's
+groove-based mark (see "Not yet refreshed" above) — don't run them expecting the current
+turbine-tooth mark until they're updated for it.
 
 ## Known gaps / next steps
 
 - **No real name yet** — placeholder throughout by design.
-- **No monogram variant yet** — all six are the plain radial-groove mark; ask if you want an
-  initial worked into the center hole once a name exists.
+- **No monogram variant yet** — ask if you want an initial worked into the center hub once a
+  name exists.
+- **No wordmark lockups yet this round** — current files are icon-only; combination
+  lockups (icon + name) can be added once a concept is picked.
 - Visual rendering was QA'd via direct PNG inspection (this environment can generate raster
   previews via `sharp`/librsvg even though LibreOffice-based `.docx`→PDF conversion is broken
-  here — see other READMEs in this repo for that limitation) plus the pptx/docx skill's schema
-  validator (`validate.py` — passed clean on both `.docx` files) and a `markitdown` content
-  dump (passed clean, no broken/missing content).
-- Business card and letterhead are mockup previews sized to real dimensions (3.5"×2" and US
-  Letter) but not yet laid out as print-ready press files (bleed/crop marks, CMYK) — flag if
-  you need those for an actual print run.
-- Say the word if you'd like the deck template (`Consulting-Template-*.pptx`) title slide
-  updated to carry this mark once a concept is chosen.
+  here — see other READMEs in this repo for that limitation).
+- Say the word if you'd like the deck template (`Consulting-Template-*.pptx`) title slide,
+  the brand guidelines doc, the letterhead, and the business card mockups all rebuilt around
+  whichever concept you pick from this round.
