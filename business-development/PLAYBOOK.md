@@ -97,8 +97,12 @@ both.
   scheduled reminders.
 - **Templates**: outreach sequence template — **received** (mirrored at
   `business-development/reference/outreach-sequence-template.md`,
-  `bd-outreach-strategist` rewritten to follow it). A presentation/deck
-  template for `bd-proposal-writer` is still outstanding.
+  `bd-outreach-strategist` rewritten to follow it). Presentation/deck
+  template — **built** (`business-development/templates/`, two files —
+  light and dark — see that folder's README). Generic/unbranded per the
+  user's choice; still open: swap in real branding when a company/client
+  identity is confirmed, and consider rebuilding the icon set if the user
+  uploads reference icons from their own prior decks.
 - **Connectors**: no Salesforce connector (blocks live pipeline data), no
   Outreach (outreach.io) connector (blocks actually sending sequences and
   tracking replies — this is what `bd-orchestrator`'s qualified-lead

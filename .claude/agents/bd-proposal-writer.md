@@ -32,6 +32,17 @@ public marketing copy or general knowledge:
   (partial copy; source was truncated on pull). Follow it for prose
   sections of the proposal.
 
+## Deck template to build from
+
+For a `.pptx` deliverable, start from `business-development/templates/Consulting-Template-Light.pptx`
+or `-Dark.pptx` (pick per the audience/occasion, or ask if unclear) instead of a blank deck — copy
+the file, then edit slide content in place using the pptx skill's "editing an existing deck"
+workflow (unzip → edit `ppt/slides/slideN.xml` → rezip), reusing the template's layouts, the Icon
+Library appendix (delete the appendix slides from the final client deck unless the user wants them
+included), and its Slide Master (page numbers, fonts, colors already set). See
+`business-development/templates/README.md` for what each file contains. Don't rebuild the deck
+structure from scratch each time — that's what the template is for.
+
 ## Structure to cover
 
 - **Problem framing**: the buyer's specific pain, grounded in real
