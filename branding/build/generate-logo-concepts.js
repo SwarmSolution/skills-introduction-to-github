@@ -18,54 +18,58 @@ function pt(cx, cy, r, angleDeg) {
   return [cx + r * Math.cos(a), cy + r * Math.sin(a)];
 }
 
-// One "blade": a twisted kite from inner radius to a tip pushed off-axis (skew),
-// with 1-2 thin background-color hairlines cut through it for a layered/line-icon look.
-function blade(cx, cy, r0, r1, a0, width, skew, fill, bgColor, hatch) {
+// A single radial groove (furrow): a straight stroked line from an inner
+// start radius to the rim. This is the actual visual unit a millstone face
+// is built from — never a filled tapered blade, which is what read as a
+// star/compass instead of a stone.
+function groove(cx, cy, r0, r1, a0, a1, stroke, weight) {
   const [x0, y0] = pt(cx, cy, r0, a0);
-  const [x1, y1] = pt(cx, cy, r1, a0 + skew);
-  const [x2, y2] = pt(cx, cy, r0, a0 + width);
-  let s = `<polygon points="${x0},${y0} ${x1},${y1} ${x2},${y2}" fill="${fill}" />`;
-  if (hatch) {
-    // thin background-colored hairlines parallel to the tip direction, for a
-    // layered/grooved "millstone furrow" texture inside the solid blade.
-    const steps = hatch;
-    for (let i = 1; i <= steps; i++) {
-      const f = i / (steps + 1);
-      const ra0 = a0 + width * f * 0.35;
-      const ra1 = a0 + skew * (0.55 + f * 0.4);
-      const rr0 = r0 + (r1 - r0) * 0.12;
-      const rr1 = r1 * (0.94 - f * 0.06);
-      const [hx0, hy0] = pt(cx, cy, rr0, ra0);
-      const [hx1, hy1] = pt(cx, cy, rr1, ra1);
-      s += `<line x1="${hx0}" y1="${hy0}" x2="${hx1}" y2="${hy1}" stroke="${bgColor}" stroke-width="${r1 * 0.018}" stroke-linecap="round" />`;
-    }
-  }
-  return s;
+  const [x1, y1] = pt(cx, cy, r1, a1);
+  return `<line x1="${x0}" y1="${y0}" x2="${x1}" y2="${y1}" stroke="${stroke}" stroke-width="${weight}" stroke-linecap="round" />`;
 }
 
-// Full radial "millstone" mark.
-// n: blade count | asym: 0=symmetric/clean kite, 1=pronounced pinwheel twist
-// centerGlyph: optional single letter placeholder for the monogram concepts
-function mark({ n, asym, size = 600, fill, bgColor, ring = true, hatch = 0, centerGlyph = null, centerGlyphColor = null }) {
+// Full "millstone" mark: a plain circular disc face, divided into `n` equal
+// sectors by full-length primary grooves radiating from near-center to the
+// rim, with `secondary` shorter parallel-fanning grooves filling each sector
+// (starting partway out, ending at the rim) — matching how an actual
+// millstone's dressed furrow pattern reads: straight radiating line groups
+// inside a clean circular silhouette, never a pointed/star outline.
+function mark({ n, secondary = 2, size = 600, stroke, bgColor, accent, weight, centerGlyph = null }) {
   const cx = size / 2, cy = size / 2;
-  const R = size * 0.46;
-  const r0 = size * 0.10;
-  const width = 360 / n;
-  const skew = width * (0.5 + asym * 0.42);
-  let blades = '';
+  const R = size * 0.47;
+  const r0 = size * 0.045;
+  const w = weight || size * 0.014;
+
+  let grooves = '';
+  const step = 360 / n;
   for (let i = 0; i < n; i++) {
-    const a0 = (360 / n) * i - 90;
-    blades += blade(cx, cy, r0, R, a0, width, skew, fill, bgColor, hatch);
+    const a0 = step * i - 90;
+    // primary full-length spoke (sector boundary)
+    grooves += groove(cx, cy, r0, R * 0.985, a0, a0, stroke, w);
+    // secondary grooves: start partway out, fan from this spoke toward the next
+    for (let j = 1; j <= secondary; j++) {
+      const f = j / (secondary + 1);
+      const startR = r0 + (R - r0) * (0.28 + f * 0.22);
+      const aStart = a0 + step * f * 0.35;
+      const aEnd = a0 + step * f * 0.92;
+      grooves += groove(cx, cy, startR, R * 0.985, aStart, aEnd, stroke, w * 0.82);
+    }
   }
-  const ringStroke = ring
-    ? `<circle cx="${cx}" cy="${cy}" r="${size * 0.485}" fill="none" stroke="${fill}" stroke-width="${size * 0.012}" />`
-    : '';
-  const centerHole = `<circle cx="${cx}" cy="${cy}" r="${size * 0.085}" fill="${bgColor}" />`;
-  const centerRing = `<circle cx="${cx}" cy="${cy}" r="${size * 0.085}" fill="none" stroke="${fill}" stroke-width="${size * 0.01}" />`;
+
+  // outer rim: clean circle silhouette (this is what must stay a plain
+  // circle, not a spiky star) + a slightly-inset second ring for a cut edge
+  const rim = `<circle cx="${cx}" cy="${cy}" r="${R}" fill="${bgColor}" stroke="${stroke}" stroke-width="${w * 1.3}" />` +
+    `<circle cx="${cx}" cy="${cy}" r="${R * 0.93}" fill="none" stroke="${stroke}" stroke-width="${w * 0.5}" opacity="0.55" />`;
+
+  // center spindle hole — small filled hole with a thin single-accent ring
+  const hole = `<circle cx="${cx}" cy="${cy}" r="${size * 0.05}" fill="${stroke}" />` +
+    `<circle cx="${cx}" cy="${cy}" r="${size * 0.068}" fill="none" stroke="${accent}" stroke-width="${w}" />`;
+
   const glyph = centerGlyph
-    ? `<text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="central" font-family="${SERIF}" font-weight="bold" font-size="${size * 0.11}" fill="${centerGlyphColor || fill}">${centerGlyph}</text>`
+    ? `<text x="${cx}" y="${cy}" text-anchor="middle" dominant-baseline="central" font-family="${SERIF}" font-weight="bold" font-size="${size * 0.045}" fill="${bgColor}">${centerGlyph}</text>`
     : '';
-  return `<g>${ringStroke}${blades}${centerHole}${centerRing}${glyph}</g>`;
+
+  return `<g>${rim}${grooves}${hole}${glyph}</g>`;
 }
 
 function svgDoc(w, h, bg, inner) {
@@ -90,41 +94,39 @@ const TAGLINE = '[Tagline Placeholder]';
 const CONCEPTS = [
   {
     id: 1,
-    label: 'Concept 1 — Icon-first, literal dense pinwheel (favicon / app-icon ready)',
+    label: 'Concept 1 — Icon-first, 6 sectors / 3 secondary grooves (clean, moderate detail)',
     kind: 'icon-standalone',
-    n: 9, asym: 1, hatch: 2,
+    n: 6, secondary: 3,
   },
   {
     id: 2,
-    label: 'Concept 2 — Combination lockup, side-by-side, 8-blade geometric',
+    label: 'Concept 2 — Combination lockup, 8 sectors / 2 secondary grooves — recommended primary',
     kind: 'lockup-side',
-    n: 8, asym: 0.35, hatch: 1,
+    n: 8, secondary: 2,
   },
   {
     id: 3,
-    label: 'Concept 3 — Monogram mark (initial in spokes), side lockup, 6-blade clean',
-    kind: 'lockup-side',
-    n: 6, asym: 0.15, hatch: 0,
-    centerGlyph: 'C',
+    label: 'Concept 3 — Icon-first, 10 sectors / 2 secondary grooves (fine, dense texture)',
+    kind: 'icon-standalone',
+    n: 10, secondary: 2,
   },
   {
     id: 4,
-    label: 'Concept 4 — Icon-first stacked, mid-density 7-blade',
+    label: 'Concept 4 — Icon-first stacked, 7 sectors / 3 secondary grooves',
     kind: 'stacked',
-    n: 7, asym: 0.6, hatch: 1,
+    n: 7, secondary: 3,
   },
   {
     id: 5,
-    label: 'Concept 5 — Combination lockup, side-by-side, 6-blade flat/minimal',
+    label: 'Concept 5 — Combination lockup, 6 sectors / 1 secondary groove (minimal)',
     kind: 'lockup-side',
-    n: 6, asym: 0, hatch: 0,
+    n: 6, secondary: 1,
   },
   {
     id: 6,
-    label: 'Concept 6 — Monogram mark (initial at center), icon-first, dense 9-blade',
+    label: 'Concept 6 — Icon-first, 9 sectors / 4 secondary grooves (densest, most literal)',
     kind: 'icon-standalone',
-    n: 9, asym: 0.8, hatch: 2,
-    centerGlyph: 'C',
+    n: 9, secondary: 4,
   },
 ];
 
@@ -134,13 +136,11 @@ function renderConceptHalf(concept, theme, isDark) {
   let w, h, inner;
   const markSvg = mark({
     n: concept.n,
-    asym: concept.asym,
+    secondary: concept.secondary,
     size: iconSize,
-    fill: theme.navy === undefined ? theme.gold : (isDark ? theme.slate : theme.navy),
+    stroke: isDark ? theme.slate : theme.navy,
     bgColor: theme.bg,
-    hatch: concept.hatch,
-    centerGlyph: concept.centerGlyph || null,
-    centerGlyphColor: theme.gold,
+    accent: theme.gold,
   });
 
   if (concept.kind === 'icon-standalone') {
@@ -186,7 +186,7 @@ async function run() {
     await sharp(Buffer.from(svg)).png().toFile(outFile);
 
     // Standalone icon-only PNG (transparent-friendly, light bg) for favicon/app-icon use
-    const iconOnlySvg = svgDoc(400, 400, LIGHT.bg, mark({ n: concept.n, asym: concept.asym, size: 340, fill: LIGHT.navy, bgColor: LIGHT.bg, hatch: concept.hatch, centerGlyph: concept.centerGlyph || null, centerGlyphColor: LIGHT.gold }).replace('<g>', '<g transform="translate(30,30)">'));
+    const iconOnlySvg = svgDoc(400, 400, LIGHT.bg, mark({ n: concept.n, secondary: concept.secondary, size: 340, stroke: LIGHT.navy, bgColor: LIGHT.bg, accent: LIGHT.gold }).replace('<g>', '<g transform="translate(30,30)">'));
     const iconFile = path.join(OUT, `concept-${concept.id}-icon-only.png`);
     await sharp(Buffer.from(iconOnlySvg)).png().toFile(iconFile);
     fs.writeFileSync(path.join(OUT, `concept-${concept.id}-icon-only.svg`), iconOnlySvg);
@@ -194,7 +194,7 @@ async function run() {
     // Same mark again as a transparent-background true vector, for real logo use
     // (no background rect at all — drop straight into any document/website).
     const transparentSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">` +
-      mark({ n: concept.n, asym: concept.asym, size: 340, fill: LIGHT.navy, bgColor: 'none', hatch: concept.hatch, centerGlyph: concept.centerGlyph || null, centerGlyphColor: LIGHT.gold }).replace('<g>', '<g transform="translate(30,30)">') +
+      mark({ n: concept.n, secondary: concept.secondary, size: 340, stroke: LIGHT.navy, bgColor: 'none', accent: LIGHT.gold }).replace('<g>', '<g transform="translate(30,30)">') +
       `</svg>`;
     fs.writeFileSync(path.join(OUT, `concept-${concept.id}-mark.svg`), transparentSvg);
 
@@ -226,7 +226,7 @@ async function run() {
   {
     const w = 850, h = 1100;
     const iconSize = 70;
-    const markSvg = mark({ n: PRIMARY.n, asym: PRIMARY.asym, size: iconSize, fill: LIGHT.navy, bgColor: LIGHT.bg, hatch: PRIMARY.hatch });
+    const markSvg = mark({ n: PRIMARY.n, secondary: PRIMARY.secondary, size: iconSize, stroke: LIGHT.navy, bgColor: LIGHT.bg, accent: LIGHT.gold });
     let body = '';
     // placeholder body copy lines
     const lineY = 260;
@@ -260,7 +260,7 @@ async function run() {
   {
     const w = 700, h = 400;
     const iconSize = 130;
-    const markFront = mark({ n: PRIMARY.n, asym: PRIMARY.asym, size: iconSize, fill: DARK.slate, bgColor: DARK.navy, hatch: PRIMARY.hatch });
+    const markFront = mark({ n: PRIMARY.n, secondary: PRIMARY.secondary, size: iconSize, stroke: DARK.slate, bgColor: DARK.navy, accent: DARK.gold });
     const front = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
       <rect width="${w}" height="${h}" fill="${DARK.navy}" />
       <g transform="translate(${w / 2 - iconSize / 2},40)">${markFront}</g>
@@ -269,7 +269,7 @@ async function run() {
     </svg>`;
     await sharp(Buffer.from(front)).png().toFile(path.join(OUT, 'business-card-front.png'));
 
-    const markBack = mark({ n: PRIMARY.n, asym: PRIMARY.asym, size: 90, fill: LIGHT.navy, bgColor: LIGHT.bg, hatch: PRIMARY.hatch });
+    const markBack = mark({ n: PRIMARY.n, secondary: PRIMARY.secondary, size: 90, stroke: LIGHT.navy, bgColor: LIGHT.bg, accent: LIGHT.gold });
     const back = `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">
       <rect width="${w}" height="${h}" fill="${LIGHT.bg}" />
       <g transform="translate(50,${h / 2 - 45})">${markBack}</g>

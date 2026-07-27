@@ -164,25 +164,25 @@ async function run() {
 
           // Logo usage
           h1('Primary Mark & Usage Rules'),
-          body('The recommended starting point is Concept 2 (page 6) — an 8-blade combination lockup — for general use: business cards, letterhead, email signatures, and slide decks. Concept 1 (dense 9-blade) is built as a standalone icon for favicons and app icons where the wordmark won\'t appear. Review all six on the following pages and tell me which to carry forward — the rest are provided as alternates or for A/B use across sub-brands or product lines.'),
+          body('The recommended starting point is Concept 2 (page 6) — an 8-sector combination lockup — for general use: business cards, letterhead, email signatures, and slide decks. Concept 3 (10 sectors, fine grooves) is built as a standalone icon for favicons and app icons where a finer, more literal stone texture reads well at small size. Review all six on the following pages and tell me which to carry forward — the rest are provided as alternates or for A/B use across sub-brands or product lines.'),
           h2('Clear Space'),
-          body('Keep clear space around the mark equal to at least the radius of its center hub circle on all sides — no text, edges, or other graphics inside that margin.'),
+          body('Keep clear space around the mark equal to at least the radius of its outer rim circle on all sides — no text, edges, or other graphics inside that margin.'),
           h2('Minimum Size'),
           bullet('Digital: no smaller than 24px for the icon-only mark (favicon-safe).'),
           bullet('Print: no smaller than 0.4in / 10mm for the icon-only mark; 1.25in wide for the combination lockup.'),
           h2('Do'),
           bullet('Use the mark at 100% opacity in navy (light backgrounds) or slate (dark backgrounds).'),
-          bullet('Use the single gold accent only for the center hub or a supporting rule/divider — never as the dominant blade color.'),
+          bullet('Use the single gold accent only for the center spindle-hole ring or a supporting rule/divider — never as the dominant groove color.'),
           bullet('Scale the mark proportionally in both directions.'),
           h2('Don\'t'),
-          bullet('Don\'t recolor the blades in multiple colors at once, add drop shadows/bevels, or stretch the mark disproportionately.'),
+          bullet('Don\'t recolor the grooves in multiple colors at once, add drop shadows/bevels, or stretch the mark disproportionately.'),
           bullet('Don\'t place the navy mark on a busy photo background without a solid color plate behind it.'),
-          bullet('Don\'t rotate the mark — its blade angles are fixed per concept.'),
+          bullet('Don\'t rotate the mark — its sector angles are fixed per concept.'),
           new Paragraph({ children: [new PageBreak()] }),
 
           // Concepts
           h1('Six Logo Concepts'),
-          body('Each concept is shown on both a light and a dark background to confirm it holds up in both contexts. Blade count and lockup style vary across the set per your direction — some read as a dense, literal pinwheel close to your reference image; others simplify toward a cleaner, more geometric mark; two work a monogram initial into the design.'),
+          body('The mark is a plain circular disc face divided into equal sectors by straight radiating grooves, with shorter secondary grooves fanning within each sector and a small center spindle hole — the actual structure of a dressed millstone face, not a pointed star or compass. Each concept varies sector count and groove density, from a fine, dense, literal texture close to your reference photo down to a clean, minimal mark; each is shown on both a light and a dark background to confirm it holds up in both contexts.'),
           new Paragraph({ children: [new PageBreak()] }),
           ...conceptSections,
 

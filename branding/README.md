@@ -1,9 +1,16 @@
 # Company Brand Identity — Working Draft
 
-An original logo mark built around a radial "millstone"/pinwheel motif (per the reference
-image provided), six lockup concepts, a full brand guidelines document, and a ready-to-use
-letterhead — all on the same navy/slate/gold palette and Cambria/Calibri typography already
-established for `business-development/templates/`.
+An original logo mark modeled on a real millstone face — a circular disc with straight grooves
+radiating out in sector groups and a small center spindle hole — six variations on that mark, a
+full brand guidelines document, and a ready-to-use letterhead, all on the same navy/slate/gold
+palette and Cambria/Calibri typography already established for `business-development/templates/`.
+
+**Revision note:** the first pass at this mark used tapered pointed blades and read as a
+compass/star, not a millstone. It's been rebuilt from the ground up: the outer silhouette is
+now a plain circle (a millstone is never spiky), and the "spokes" are thin straight-line grooves
+— a primary groove per sector plus shorter secondary grooves fanning within each sector, matching
+how an actual dressed millstone face looks, just simplified into clean brand-friendly line work
+instead of the reference photo's rough stone texture.
 
 **Nothing here has a real company name yet** — every file uses `[COMPANY NAME]` /
 `[Tagline Placeholder]` brackets by design (per your choice to work in placeholder form for
@@ -21,22 +28,23 @@ now). Swap those and regenerate once a name is locked in — see "Regenerating" 
 
 ## The mark
 
-The reference circle you shared reads as a radial pinwheel of angular blades around a center
-hub — I kept that structure but rebuilt it from scratch in the brand's own navy/slate/gold
-palette rather than the reference's colors. Six concepts vary two things independently, per
-your direction to see a mix of both:
+Each concept is the same construction — a plain circle, divided into equal sectors by full-length
+radial grooves, with shorter secondary grooves fanning between them, plus a small center hole with
+a thin gold ring (the "spindle hole" on a real millstone). Concepts vary sector count and groove
+density, from a fine, dense texture closest to your reference photo down to a clean, minimal mark:
 
-| # | Lockup style | Blade count / density |
+| # | Lockup style | Sectors / secondary grooves |
 |---|---|---|
-| 1 | Icon-first, wordmark separate below (standalone icon works alone for a favicon/app icon) | 9, dense/asymmetric — closest to your reference |
-| 2 | Combination lockup, icon beside name | 8, moderate geometric — **recommended primary/default** |
-| 3 | Monogram (initial "C" placeholder worked into the center hub), side lockup | 6, clean/symmetric |
-| 4 | Icon-first, wordmark stacked below | 7, mid-density asymmetric |
-| 5 | Combination lockup, icon beside name | 6, flat/minimal |
-| 6 | Monogram (initial "C" placeholder in center), icon-first | 9, dense — most literal match to the reference |
+| 1 | Icon-first, wordmark separate below | 6 sectors, 3 secondary — clean, moderate detail |
+| 2 | Combination lockup, icon beside name | 8 sectors, 2 secondary — **recommended primary/default** |
+| 3 | Icon-first, wordmark separate below | 10 sectors, 2 secondary — fine, dense texture |
+| 4 | Icon-first, wordmark stacked below | 7 sectors, 3 secondary — mid-density |
+| 5 | Combination lockup, icon beside name | 6 sectors, 1 secondary — flat/minimal |
+| 6 | Icon-first, wordmark separate below | 9 sectors, 4 secondary — densest, most literal to the reference photo |
 
 Concept 2 is used for the letterhead and business card mockups as a sensible default; nothing
-is finalized until you pick one (or ask for a hybrid of two).
+is finalized until you pick one (or ask for a hybrid of two). None of these carry a monogram
+this round — say the word if you'd like an initial worked into the center hole once a name exists.
 
 ## Files
 
@@ -46,8 +54,8 @@ is finalized until you pick one (or ask for a hybrid of two).
   favicon/app-icon ready.
 - `logo-concepts/concept-N-mark.svg` — the icon alone on a **transparent** background — the
   one to drop into another document, a website, or open directly in Illustrator/Inkscape/Figma
-  to refine further. **This is the true editable source** — it's vector, so every blade, the
-  hub, and the ring are separate, fully editable paths/shapes, not a flattened image.
+  to refine further. **This is the true editable source** — it's vector, so every groove, the
+  hub, and the rim are separate, fully editable paths/shapes, not a flattened image.
 - `logo-concepts/contact-sheet.png` — all six, stacked, for a quick side-by-side scan.
 - `mockups/letterhead-mockup.png`, `mockups/business-card-front.png`,
   `mockups/business-card-back.png` — preview renders (used inside `Brand-Guidelines.docx`).
@@ -97,7 +105,8 @@ occurrences in `build-guidelines.js` and `build-letterhead.js`, then rerun all t
 ## Known gaps / next steps
 
 - **No real name yet** — placeholder throughout by design.
-- **Monogram concepts (3, 6) use a generic "C"** — swap for the real initial once named.
+- **No monogram variant yet** — all six are the plain radial-groove mark; ask if you want an
+  initial worked into the center hole once a name exists.
 - Visual rendering was QA'd via direct PNG inspection (this environment can generate raster
   previews via `sharp`/librsvg even though LibreOffice-based `.docx`→PDF conversion is broken
   here — see other READMEs in this repo for that limitation) plus the pptx/docx skill's schema
