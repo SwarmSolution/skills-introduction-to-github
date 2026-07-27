@@ -16,9 +16,12 @@ name from a prior run — call `ToolSearch` first (e.g. keyword query
 `"google drive search files"` or `"google drive read file"`) to find and
 load whatever the current tool is actually called, then call it normally.
 
-There is no CRM connector in this environment yet (tracked as an open
-item) — pipeline data comes from a CRM export/spreadsheet the user
-provides, or whatever's in Drive.
+There is no Salesforce connector in this environment yet (tracked as an
+open item — Salesforce is the confirmed CRM, per the real sequence
+template in `business-development/reference/outreach-sequence-template.md`
+which references Salesforce campaign codes). Pipeline data comes from a
+CRM export/spreadsheet the user provides, or whatever's in Drive, until
+that connector exists.
 
 ## Process
 

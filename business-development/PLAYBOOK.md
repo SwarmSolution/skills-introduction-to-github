@@ -78,10 +78,13 @@ both.
   competitive check → outreach draft as one pipeline call. Validate it
   against a real account next.
 - Sending outreach, tracking replies, and auto-flagging a qualified lead
-  are explicitly out of scope until an email connector (Gmail or similar)
-  is connected — see §4, Connectors. Don't build a fake version of this;
-  wire it in for real once the connector exists.
-- A CRM connector would upgrade `bd-pipeline-strategist` from
+  are explicitly out of scope until the real sequencing/CRM tools are
+  connected — see §4, Connectors. The tools are now known specifically:
+  **Outreach** (sales engagement platform) and **Salesforce** (CRM),
+  confirmed from the real sequence-request template — not a generic
+  Gmail/CRM assumption anymore. Don't build a fake version of this; wire
+  it in for real once a connector exists.
+- A Salesforce connector would upgrade `bd-pipeline-strategist` from
   spreadsheet-only to live pipeline data — same rule, wire in for real,
   don't fake it.
 
@@ -92,14 +95,15 @@ both.
   environment with a "requires approval" error — approve them when
   prompted, or allowlist them, to unblock full-document reads and
   scheduled reminders.
-- **Templates**: an outreach sequence template (format to follow, instead
-  of `bd-outreach-strategist`'s own default) and a presentation/deck
-  template for `bd-proposal-writer` are still outstanding.
-- **Connectors**: no CRM connector (blocks live pipeline data), no
-  email-sending connector (blocks actually sending outreach and tracking
-  replies — this is what `bd-orchestrator`'s qualified-lead detection is
-  waiting on), no LinkedIn/Sales Navigator access (blocks closing the
-  remaining named-contact gaps).
+- **Templates**: outreach sequence template — **received** (mirrored at
+  `business-development/reference/outreach-sequence-template.md`,
+  `bd-outreach-strategist` rewritten to follow it). A presentation/deck
+  template for `bd-proposal-writer` is still outstanding.
+- **Connectors**: no Salesforce connector (blocks live pipeline data), no
+  Outreach (outreach.io) connector (blocks actually sending sequences and
+  tracking replies — this is what `bd-orchestrator`'s qualified-lead
+  detection is waiting on), no LinkedIn/Sales Navigator access (blocks
+  closing the remaining named-contact gaps).
 
 ## 3. Working conventions
 
