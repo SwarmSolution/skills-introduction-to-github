@@ -106,6 +106,27 @@ function pageNumberFooter(slide, n, total, color) {
   });
 }
 
+// Fast path for a one-preset-shape icon — most of the expanded catalog below
+// uses this instead of a bespoke composition.
+function simple(shapeType, o = {}) {
+  const wR = o.w ?? 1.7;
+  const hR = o.h ?? 1.7;
+  const rotate = o.rotate ?? 0;
+  const filled = !!o.filled;
+  return (slide, cx, cy, r, color) => {
+    slide.addShape(shapeType, {
+      x: cx - (r * wR) / 2,
+      y: cy - (r * hR) / 2,
+      w: r * wR,
+      h: r * hR,
+      rotate,
+      fill: filled ? { color } : { type: "none" },
+      line: filled ? { type: "none" } : { color, width: 1.6 },
+      ...(o.extra || {}),
+    });
+  };
+}
+
 // ---------------------------------------------------------------------------
 // Icon shape library — every icon is composed only of native PowerPoint
 // autoshapes (ellipse/rect/roundRect/triangle/line + OOXML presets), so every
@@ -635,9 +656,215 @@ const ICONS = {
       line: { color, width: 1.75 },
     });
   },
+
+  // --- Universal / generic composites ---
+  home: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.rect, {
+      x: cx - r * 0.65, y: cy - r * 0.1, w: r * 1.3, h: r * 0.95,
+      fill: { type: "none" }, line: { color, width: 1.75 },
+    });
+    slide.addShape(ShapeType.triangle, {
+      x: cx - r * 0.85, y: cy - r * 0.95, w: r * 1.7, h: r * 0.75,
+      fill: { type: "none" }, line: { color, width: 1.75 },
+    });
+  },
+  clock: (slide, cx, cy, r, color) => {
+    circleOutline(slide, cx, cy, r * 0.85, color, 1.6);
+    addLine(slide, cx, cy, cx, cy - r * 0.5, color, 1.4);
+    addLine(slide, cx, cy, cx + r * 0.4, cy + r * 0.1, color, 1.4);
+  },
+  lock: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.roundRect, {
+      x: cx - r * 0.65, y: cy - r * 0.1, w: r * 1.3, h: r * 0.95, rectRadius: 0.1,
+      fill: { type: "none" }, line: { color, width: 1.75 },
+    });
+    slide.addShape(ShapeType.arc, {
+      x: cx - r * 0.42, y: cy - r * 0.95, w: r * 0.84, h: r * 0.85,
+      angleRange: [180, 360], fill: { type: "none" }, line: { color, width: 1.6 },
+    });
+    circleFill(slide, cx, cy + r * 0.35, r * 0.1, color);
+  },
+  document: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.roundRect, {
+      x: cx - r * 0.6, y: cy - r * 0.9, w: r * 1.2, h: r * 1.8, rectRadius: 0.06,
+      fill: { type: "none" }, line: { color, width: 1.6 },
+    });
+    [-0.35, 0, 0.35].forEach((off) => addLine(slide, cx - r * 0.35, cy + r * off, cx + r * 0.35, cy + r * off, color, 1.1));
+  },
+  checklist: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.roundRect, {
+      x: cx - r * 0.7, y: cy - r * 0.9, w: r * 1.4, h: r * 1.8, rectRadius: 0.06,
+      fill: { type: "none" }, line: { color, width: 1.6 },
+    });
+    [-0.4, 0.05, 0.5].forEach((off) => {
+      addLine(slide, cx - r * 0.4, cy + r * off, cx - r * 0.22, cy + r * off + r * 0.14, color, 1.2);
+      addLine(slide, cx - r * 0.22, cy + r * off + r * 0.14, cx + r * 0.05, cy + r * off - r * 0.2, color, 1.2);
+    });
+  },
+  checkmarkTick: (slide, cx, cy, r, color) => {
+    addLine(slide, cx - r * 0.55, cy, cx - r * 0.1, cy + r * 0.5, color, 2);
+    addLine(slide, cx - r * 0.1, cy + r * 0.5, cx + r * 0.6, cy - r * 0.55, color, 2);
+  },
+  cancelX: (slide, cx, cy, r, color) => {
+    addLine(slide, cx - r * 0.55, cy - r * 0.55, cx + r * 0.55, cy + r * 0.55, color, 2);
+    addLine(slide, cx - r * 0.55, cy + r * 0.55, cx + r * 0.55, cy - r * 0.55, color, 2);
+  },
+  gridApps: (slide, cx, cy, r, color) => {
+    [-0.4, 0.15].forEach((xo) =>
+      [-0.4, 0.15].forEach((yo) => {
+        slide.addShape(ShapeType.rect, { x: cx + r * xo, y: cy + r * yo, w: r * 0.5, h: r * 0.5, fill: { color }, line: { type: "none" } });
+      })
+    );
+  },
+  cameraIcon: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.roundRect, {
+      x: cx - r * 0.85, y: cy - r * 0.5, w: r * 1.7, h: r * 1.0, rectRadius: 0.08,
+      fill: { type: "none" }, line: { color, width: 1.6 },
+    });
+    circleOutline(slide, cx, cy, r * 0.35, color, 1.4);
+    slide.addShape(ShapeType.rect, { x: cx + r * 0.15, y: cy - r * 0.72, w: r * 0.4, h: r * 0.22, fill: { type: "none" }, line: { color, width: 1.4 } });
+  },
+  keyIcon: (slide, cx, cy, r, color) => {
+    circleOutline(slide, cx - r * 0.45, cy, r * 0.38, color, 1.6);
+    addLine(slide, cx - r * 0.1, cy, cx + r * 0.75, cy, color, 1.6);
+    addLine(slide, cx + r * 0.5, cy, cx + r * 0.5, cy + r * 0.25, color, 1.4);
+    addLine(slide, cx + r * 0.72, cy, cx + r * 0.72, cy + r * 0.25, color, 1.4);
+  },
+  searchIcon: (slide, cx, cy, r, color) => {
+    circleOutline(slide, cx - r * 0.15, cy - r * 0.15, r * 0.55, color, 1.7);
+    addLine(slide, cx + r * 0.22, cy + r * 0.22, cx + r * 0.65, cy + r * 0.65, color, 2);
+  },
+  peopleIcon: (slide, cx, cy, r, color) => {
+    [-0.32, 0.32].forEach((xo) => {
+      circleOutline(slide, cx + r * xo, cy - r * 0.35, r * 0.28, color, 1.5);
+      slide.addShape(ShapeType.arc, {
+        x: cx + r * xo - r * 0.4, y: cy - r * 0.05, w: r * 0.8, h: r * 0.75,
+        angleRange: [180, 360], fill: { type: "none" }, line: { color, width: 1.4 },
+      });
+    });
+  },
+  wrenchIcon: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.rect, {
+      x: cx - r * 0.55, y: cy - r * 0.14, w: r * 1.1, h: r * 0.28, rotate: 45,
+      fill: { type: "none" }, line: { color, width: 1.6 },
+    });
+    circleOutline(slide, cx - r * 0.55, cy - r * 0.55, r * 0.22, color, 1.4);
+    circleOutline(slide, cx + r * 0.55, cy + r * 0.55, r * 0.22, color, 1.4);
+  },
+  giftIcon: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.roundRect, {
+      x: cx - r * 0.75, y: cy - r * 0.15, w: r * 1.5, h: r * 1.0, rectRadius: 0.05,
+      fill: { type: "none" }, line: { color, width: 1.6 },
+    });
+    addLine(slide, cx, cy - r * 0.15, cx, cy + r * 0.85, color, 1.4);
+    addLine(slide, cx - r * 0.75, cy - r * 0.15, cx + r * 0.75, cy - r * 0.15, color, 1.4);
+  },
+  trashIcon: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.trapezoid, {
+      x: cx - r * 0.55, y: cy - r * 0.15, w: r * 1.1, h: r * 1.0, flipV: true,
+      fill: { type: "none" }, line: { color, width: 1.6 },
+    });
+    slide.addShape(ShapeType.rect, { x: cx - r * 0.7, y: cy - r * 0.3, w: r * 1.4, h: r * 0.16, fill: { color }, line: { type: "none" } });
+  },
+  phoneIcon: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.roundRect, {
+      x: cx - r * 0.4, y: cy - r * 0.95, w: r * 0.8, h: r * 1.9, rectRadius: 0.2,
+      fill: { type: "none" }, line: { color, width: 1.7 },
+    });
+    circleFill(slide, cx, cy + r * 0.65, r * 0.09, color);
+  },
+  mailIcon: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.rect, {
+      x: cx - r * 0.85, y: cy - r * 0.55, w: r * 1.7, h: r * 1.1,
+      fill: { type: "none" }, line: { color, width: 1.6 },
+    });
+    addLine(slide, cx - r * 0.85, cy - r * 0.55, cx, cy + r * 0.1, color, 1.4);
+    addLine(slide, cx + r * 0.85, cy - r * 0.55, cx, cy + r * 0.1, color, 1.4);
+  },
+  calendarIcon: (slide, cx, cy, r, color) => {
+    slide.addShape(ShapeType.roundRect, {
+      x: cx - r * 0.8, y: cy - r * 0.7, w: r * 1.6, h: r * 1.5, rectRadius: 0.06,
+      fill: { type: "none" }, line: { color, width: 1.6 },
+    });
+    addLine(slide, cx - r * 0.8, cy - r * 0.25, cx + r * 0.8, cy - r * 0.25, color, 1.4);
+    [-0.35, 0.35].forEach((xo) => slide.addShape(ShapeType.rect, { x: cx + r * xo - r * 0.05, y: cy - r * 0.9, w: r * 0.1, h: r * 0.3, fill: { color }, line: { type: "none" } }));
+  },
+  listIcon: (slide, cx, cy, r, color) => {
+    [-0.5, 0, 0.5].forEach((off) => {
+      circleFill(slide, cx - r * 0.75, cy + r * off, r * 0.06, color);
+      addLine(slide, cx - r * 0.55, cy + r * off, cx + r * 0.75, cy + r * off, color, 1.3);
+    });
+  },
+
+  // --- Generic single-preset icons (reused across topics with different captions) ---
+  starRating: simple(ShapeType.star5, { w: 1.7, h: 1.7 }),
+  folderGeneric: simple(ShapeType.folderCorner, { w: 1.8, h: 1.5 }),
+  pinLocation: simple(ShapeType.teardrop, { w: 1.1, h: 1.6, rotate: 180 }),
+  filterFunnel: simple(ShapeType.funnel, { w: 1.4, h: 1.7 }),
+  priorityStop: simple(ShapeType.octagon, { w: 1.6, h: 1.6 }),
+  awardRibbon: simple(ShapeType.ribbon2, { w: 1.9, h: 1.3 }),
+  messageBubble: simple(ShapeType.wedgeRoundRectCallout, { w: 1.8, h: 1.3 }),
+  exchangeArrows: simple(ShapeType.leftRightCircularArrow, { w: 1.8, h: 1.5 }),
+  nightSupport: simple(ShapeType.moon, { w: 1.5, h: 1.5 }),
+  ideaSpark: simple(ShapeType.sun, { w: 1.6, h: 1.6 }),
+  approvalDonut: simple(ShapeType.donut, { w: 1.6, h: 1.6 }),
+  focusDiamond: simple(ShapeType.diamond, { w: 1.6, h: 1.6 }),
+  directionChevron: simple(ShapeType.chevron, { w: 1.8, h: 1.2 }),
+  alertBolt: simple(ShapeType.lightningBolt, { w: 1.1, h: 1.9, filled: true }),
+  calmWave: simple(ShapeType.wave, { w: 2.0, h: 1.0 }),
+  signalWave: simple(ShapeType.arc, { w: 1.7, h: 1.7, extra: { angleRange: [200, 340] } }),
+  addPlus: simple(ShapeType.mathPlus, { w: 1.3, h: 1.3, filled: true }),
+  removeMinus: simple(ShapeType.mathMinus, { w: 1.3, h: 1.3, filled: true }),
+  uploadArrow: simple(ShapeType.upArrow, { w: 1.1, h: 1.7, filled: true }),
+  downloadArrow: simple(ShapeType.downArrow, { w: 1.1, h: 1.7, filled: true }),
+  noteTab: simple(ShapeType.cornerTabs, { w: 1.7, h: 1.7 }),
+  groupBracket: simple(ShapeType.bracePair, { w: 1.0, h: 1.8 }),
+  sealBadge: simple(ShapeType.irregularSeal1, { w: 1.7, h: 1.7 }),
+  scrollDocument: simple(ShapeType.verticalScroll, { w: 1.2, h: 1.8 }),
+  cylinderStorage: simple(ShapeType.can, { w: 1.4, h: 1.8 }),
+  cubeBlock: simple(ShapeType.cube, { w: 1.7, h: 1.7 }),
+  teardropDrop: simple(ShapeType.teardrop, { w: 1.1, h: 1.5 }),
+  pieChartAlt: simple(ShapeType.pie, { w: 1.7, h: 1.7, extra: { angleRange: [270, 90] } }),
+  donutRingAlt: simple(ShapeType.donut, { w: 1.4, h: 1.4 }),
+  heartFavorite: simple(ShapeType.heart, { w: 1.6, h: 1.5 }),
+  cloudSync: simple(ShapeType.cloud, { w: 1.8, h: 1.2 }),
+  hexNode: simple(ShapeType.hexagon, { w: 1.7, h: 1.6 }),
+  bevelCard: simple(ShapeType.bevel, { w: 1.8, h: 1.3 }),
+  frameMedia: simple(ShapeType.frame, { w: 1.6, h: 1.6 }),
+  plaqueBadge: simple(ShapeType.plaque, { w: 1.8, h: 1.2 }),
+  squareTabsOrganize: simple(ShapeType.squareTabs, { w: 1.7, h: 1.7 }),
 };
 
 const INDUSTRY_LIBRARY = [
+  {
+    name: "Universal / General Business",
+    icons: [
+      { key: "home", name: "Home", words: "Navigation · Home · Start" },
+      { key: "clock", name: "Time", words: "Time Management · Schedule · Deadline" },
+      { key: "lock", name: "Security", words: "Access Control · Privacy · Protection" },
+      { key: "document", name: "Document", words: "Files · Documents · Records" },
+      { key: "checklist", name: "Checklist", words: "Tasks · To-Do · Checklist" },
+      { key: "checkmarkTick", name: "Approved", words: "Approval · Complete · Verified" },
+      { key: "cancelX", name: "Cancel", words: "Cancel · Reject · Remove" },
+      { key: "gridApps", name: "Applications", words: "Apps · Modules · Tools" },
+      { key: "cameraIcon", name: "Media", words: "Photo · Media · Capture" },
+      { key: "keyIcon", name: "Access", words: "Access · Login · Credentials" },
+      { key: "searchIcon", name: "Search", words: "Search · Find · Discover" },
+      { key: "messageBubble", name: "Message", words: "Communication · Chat · Message" },
+      { key: "peopleIcon", name: "People", words: "Team · Contacts · People" },
+      { key: "wrenchIcon", name: "Support", words: "Support · Maintenance · Tools" },
+      { key: "giftIcon", name: "Rewards", words: "Rewards · Incentives · Recognition" },
+      { key: "trashIcon", name: "Delete", words: "Delete · Archive · Remove" },
+      { key: "phoneIcon", name: "Contact", words: "Phone · Contact · Call" },
+      { key: "starRating", name: "Rating", words: "Rating · Quality · Favorite" },
+      { key: "folderGeneric", name: "Organize", words: "Files · Folders · Organization" },
+      { key: "mailIcon", name: "Email", words: "Email · Correspondence · Inbox" },
+      { key: "calendarIcon", name: "Schedule", words: "Calendar · Planning · Schedule" },
+      { key: "listIcon", name: "List View", words: "List · Agenda · Items" },
+      { key: "pinLocation", name: "Location", words: "Location · Site · Address" },
+      { key: "filterFunnel", name: "Filter", words: "Filter · Sort · Refine" },
+    ],
+  },
   {
     name: "Financial Services",
     icons: [
@@ -645,6 +872,22 @@ const INDUSTRY_LIBRARY = [
       { key: "security", name: "Security", words: "Banking · Security · Trust · Compliance" },
       { key: "capital", name: "Capital", words: "Capital · Funding · Currency · Wealth" },
       { key: "institution", name: "Institution", words: "Banking · Institution · Financial Services" },
+      { key: "exchangeArrows", name: "Transactions", words: "Payments · Transactions · Exchange" },
+      { key: "priorityStop", name: "Risk", words: "Risk Management · Compliance · Controls" },
+      { key: "awardRibbon", name: "Rating", words: "Credit Rating · Certification · Standing" },
+      { key: "document", name: "Statements", words: "Account Statements · Reports · Records" },
+      { key: "checklist", name: "Audit", words: "Audit · Compliance Checklist · Controls" },
+      { key: "keyIcon", name: "Access Control", words: "Access Control · Authorization · Security" },
+      { key: "dashboard", name: "Portfolio Dashboard", words: "Portfolio · KPI · Performance" },
+      { key: "pieChartAlt", name: "Allocation", words: "Asset Allocation · Portfolio Mix" },
+      { key: "sealBadge", name: "Certified", words: "Certified · Accredited · Compliant" },
+      { key: "cylinderStorage", name: "Reserves", words: "Reserves · Capital Pool · Treasury" },
+      { key: "calendarIcon", name: "Maturity", words: "Maturity Date · Term · Schedule" },
+      { key: "phoneIcon", name: "Advisory Line", words: "Client Service · Advisory Line" },
+      { key: "peopleIcon", name: "Clients", words: "Clients · Relationship Management" },
+      { key: "mailIcon", name: "Statements Delivery", words: "Statements · Correspondence" },
+      { key: "lock", name: "Data Security", words: "Data Security · Privacy · Encryption" },
+      { key: "starRating", name: "Credit Score", words: "Credit Score · Rating · Standing" },
     ],
   },
   {
@@ -656,6 +899,20 @@ const INDUSTRY_LIBRARY = [
       { key: "pharma", name: "Pharma", words: "Pharmaceutical · Therapeutics · Drug Development" },
       { key: "genomics", name: "Genomics", words: "Genomics · DNA · Biotech · Precision Medicine" },
       { key: "research", name: "Research", words: "R&D · Laboratory · Formulation · Discovery" },
+      { key: "checklist", name: "Clinical Protocol", words: "Clinical Trial · Protocol · Checklist" },
+      { key: "document", name: "Regulatory Filing", words: "Regulatory · Submission · Documentation" },
+      { key: "lock", name: "Patient Privacy", words: "Patient Data · Privacy · HIPAA" },
+      { key: "calendarIcon", name: "Trial Timeline", words: "Clinical Timeline · Milestones" },
+      { key: "dashboard", name: "Trial Dashboard", words: "Trial Monitoring · Dashboard · KPIs" },
+      { key: "peopleIcon", name: "Patients", words: "Patients · Care Teams · Cohort" },
+      { key: "sealBadge", name: "Approval", words: "FDA Approval · Certification · Compliance" },
+      { key: "cylinderStorage", name: "Biobank", words: "Biobank · Sample Storage · Cold Chain" },
+      { key: "teardropDrop", name: "Formulation", words: "Formulation · Liquid · Dosage" },
+      { key: "heartFavorite", name: "Wellbeing", words: "Patient Wellbeing · Outcomes" },
+      { key: "pinLocation", name: "Site", words: "Clinical Site · Facility Location" },
+      { key: "starRating", name: "Quality", words: "Quality · Grade · Standard" },
+      { key: "scrollDocument", name: "Case History", words: "Case History · Patient Record" },
+      { key: "phoneIcon", name: "Patient Support", words: "Patient Support Line · Contact" },
     ],
   },
   {
@@ -665,6 +922,20 @@ const INDUSTRY_LIBRARY = [
       { key: "facility", name: "Facility", words: "Plant · Facility · Production" },
       { key: "logistics", name: "Logistics", words: "Logistics · Supply Chain · Distribution" },
       { key: "packaging", name: "Packaging", words: "Packaging · Inventory · Product" },
+      { key: "checklist", name: "Quality Control", words: "Quality Control · Inspection · Checklist" },
+      { key: "wrenchIcon", name: "Maintenance", words: "Maintenance · Repair · Service" },
+      { key: "gridApps", name: "Production Line", words: "Production Line · Work Cells" },
+      { key: "cylinderStorage", name: "Materials", words: "Raw Materials · Storage · Silo" },
+      { key: "calendarIcon", name: "Production Schedule", words: "Production Schedule · Planning" },
+      { key: "dashboard", name: "Plant Dashboard", words: "Plant Performance · OEE Dashboard" },
+      { key: "priorityStop", name: "Safety", words: "Safety · Hazard · Compliance" },
+      { key: "sealBadge", name: "Certification", words: "ISO Certification · Standards" },
+      { key: "keyIcon", name: "Access Control", words: "Facility Access · Security" },
+      { key: "peopleIcon", name: "Workforce", words: "Workforce · Labor · Shift Teams" },
+      { key: "directionChevron", name: "Workflow", words: "Process Flow · Sequence · Workflow" },
+      { key: "scrollDocument", name: "Work Order", words: "Work Order · Traveler · Routing" },
+      { key: "cubeBlock", name: "Inventory", words: "Inventory · SKU · Stock" },
+      { key: "trashIcon", name: "Waste Reduction", words: "Waste Reduction · Scrap · Lean" },
     ],
   },
   {
@@ -674,6 +945,20 @@ const INDUSTRY_LIBRARY = [
       { key: "connectivity", name: "Connectivity", words: "Connectivity · Network · Telecom" },
       { key: "data", name: "Data", words: "Data · IT · Digital" },
       { key: "innovation", name: "Innovation", words: "Innovation · Technology · R&D" },
+      { key: "signalWave", name: "Signal", words: "Signal · Wireless · Telecom" },
+      { key: "gridApps", name: "Applications", words: "Software · Applications · Platforms" },
+      { key: "lock", name: "Cybersecurity", words: "Cybersecurity · Data Protection" },
+      { key: "keyIcon", name: "Authentication", words: "Authentication · Access Management" },
+      { key: "cylinderStorage", name: "Servers", words: "Servers · Data Center · Storage" },
+      { key: "dashboard", name: "IT Dashboard", words: "IT Monitoring · Dashboard · Uptime" },
+      { key: "exchangeArrows", name: "Integration", words: "API Integration · Data Exchange" },
+      { key: "hexNode", name: "Network Node", words: "Network Node · Infrastructure" },
+      { key: "cameraIcon", name: "Digital Media", words: "Digital Media · Streaming · Content" },
+      { key: "phoneIcon", name: "Mobile", words: "Mobile · Devices · Telecom" },
+      { key: "checklist", name: "DevOps", words: "DevOps · Release Checklist · CI/CD" },
+      { key: "peopleIcon", name: "IT Support", words: "IT Support · Help Desk" },
+      { key: "messageBubble", name: "Collaboration", words: "Collaboration · Messaging · Chat" },
+      { key: "calmWave", name: "Bandwidth", words: "Bandwidth · Throughput · Capacity" },
     ],
   },
   {
@@ -683,6 +968,19 @@ const INDUSTRY_LIBRARY = [
       { key: "power", name: "Power", words: "Power · Utilities · Electricity" },
       { key: "sustainability", name: "Sustainability", words: "Sustainability · Environment · ESG" },
       { key: "storage", name: "Storage", words: "Energy Storage · Battery · Grid" },
+      { key: "gridApps", name: "Smart Grid", words: "Smart Grid · Distribution Network" },
+      { key: "dashboard", name: "Energy Dashboard", words: "Energy Monitoring · Dashboard" },
+      { key: "calendarIcon", name: "Maintenance Schedule", words: "Maintenance Schedule · Outage Planning" },
+      { key: "priorityStop", name: "Safety Compliance", words: "Safety · Regulatory Compliance" },
+      { key: "cylinderStorage", name: "Reservoir", words: "Reservoir · Fuel Storage" },
+      { key: "pinLocation", name: "Site", words: "Plant Site · Facility Location" },
+      { key: "checklist", name: "Inspection", words: "Inspection · Compliance Checklist" },
+      { key: "peopleIcon", name: "Field Crews", words: "Field Crews · Technicians" },
+      { key: "directionChevron", name: "Distribution", words: "Distribution · Transmission Flow" },
+      { key: "teardropDrop", name: "Water Utility", words: "Water Utility · Resource Management" },
+      { key: "sealBadge", name: "Certification", words: "Environmental Certification · ESG Rating" },
+      { key: "wrenchIcon", name: "Maintenance", words: "Equipment Maintenance · Service" },
+      { key: "calmWave", name: "Grid Load", words: "Grid Load · Demand · Capacity" },
     ],
   },
   {
@@ -692,6 +990,20 @@ const INDUSTRY_LIBRARY = [
       { key: "advisory", name: "Advisory", words: "Advisory · Consulting · Professional Services" },
       { key: "insights", name: "Insights", words: "Insights · Analytics · Reporting" },
       { key: "partnership", name: "Partnership", words: "Partnership · Collaboration · Alliance" },
+      { key: "document", name: "Proposal", words: "Proposal · Statement of Work" },
+      { key: "checklist", name: "Engagement Plan", words: "Engagement Plan · Milestones · Checklist" },
+      { key: "calendarIcon", name: "Timeline", words: "Project Timeline · Scheduling" },
+      { key: "peopleIcon", name: "Team", words: "Engagement Team · Stakeholders" },
+      { key: "dashboard", name: "Reporting Dashboard", words: "Client Reporting · Dashboard" },
+      { key: "messageBubble", name: "Consultation", words: "Consultation · Advisory Discussion" },
+      { key: "sealBadge", name: "Credentials", words: "Credentials · Accreditation" },
+      { key: "starRating", name: "Client Satisfaction", words: "Client Satisfaction · NPS · Rating" },
+      { key: "directionChevron", name: "Roadmap", words: "Roadmap · Next Steps · Direction" },
+      { key: "focusDiamond", name: "Priorities", words: "Priorities · Focus Areas" },
+      { key: "awardRibbon", name: "Recognition", words: "Recognition · Awards · Distinction" },
+      { key: "phoneIcon", name: "Client Line", words: "Client Relationship · Contact" },
+      { key: "groupBracket", name: "Alignment", words: "Stakeholder Alignment · Grouping" },
+      { key: "mailIcon", name: "Correspondence", words: "Client Correspondence · Updates" },
     ],
   },
   {
@@ -701,6 +1013,19 @@ const INDUSTRY_LIBRARY = [
       { key: "automation2", name: "Automation", words: "Automation · AI · Intelligent Process" },
       { key: "assistant", name: "Assistant", words: "Conversational AI · Copilot · Chatbot" },
       { key: "vision", name: "Vision", words: "Computer Vision · Insight · Recognition" },
+      { key: "dataAnalytics", name: "Predictive Model", words: "Predictive Modeling · Forecasting" },
+      { key: "gridApps", name: "ML Pipeline", words: "ML Pipeline · Model Deployment" },
+      { key: "cylinderStorage", name: "Training Data", words: "Training Data · Data Lake" },
+      { key: "checklist", name: "Model Validation", words: "Model Validation · Testing Checklist" },
+      { key: "hexNode", name: "AI Node", words: "AI Compute Node · Inference" },
+      { key: "signalWave", name: "Signal Processing", words: "Signal Processing · Pattern Detection" },
+      { key: "directionChevron", name: "Decision Flow", words: "Decision Flow · Logic Path" },
+      { key: "focusDiamond", name: "Precision", words: "Precision · Accuracy · Confidence" },
+      { key: "ideaSpark", name: "Generative AI", words: "Generative AI · Innovation" },
+      { key: "keyIcon", name: "Model Access", words: "Model Access · API Key" },
+      { key: "peopleIcon", name: "Human-in-the-Loop", words: "Human-in-the-Loop · Oversight" },
+      { key: "sealBadge", name: "Responsible AI", words: "Responsible AI · Governance · Ethics" },
+      { key: "addPlus", name: "Augmentation", words: "AI Augmentation · Enhancement" },
     ],
   },
   {
@@ -710,6 +1035,18 @@ const INDUSTRY_LIBRARY = [
       { key: "database", name: "Database", words: "Database · Storage · Records" },
       { key: "dashboard", name: "Dashboard", words: "Dashboard · KPI · Visualization" },
       { key: "dataLayers", name: "Governance", words: "Data Governance · Layers · Records" },
+      { key: "pieChartAlt", name: "Segmentation", words: "Data Segmentation · Breakdown" },
+      { key: "filterFunnel", name: "Data Filtering", words: "Data Filtering · Query · Refine" },
+      { key: "gridApps", name: "Data Sources", words: "Data Sources · Integration Points" },
+      { key: "cylinderStorage", name: "Data Lake", words: "Data Lake · Warehouse · Storage" },
+      { key: "lock", name: "Data Privacy", words: "Data Privacy · Governance · Compliance" },
+      { key: "checklist", name: "Data Quality", words: "Data Quality · Validation Checklist" },
+      { key: "exchangeArrows", name: "ETL", words: "ETL · Data Pipeline · Transformation" },
+      { key: "signalWave", name: "Real-Time Feed", words: "Real-Time Feed · Streaming Data" },
+      { key: "directionChevron", name: "Data Flow", words: "Data Flow · Pipeline Sequence" },
+      { key: "starRating", name: "Data Confidence", words: "Data Confidence · Quality Score" },
+      { key: "document", name: "Reports", words: "Reports · Data Documentation" },
+      { key: "scrollDocument", name: "Audit Trail", words: "Audit Trail · Data Lineage" },
     ],
   },
   {
@@ -719,6 +1056,18 @@ const INDUSTRY_LIBRARY = [
       { key: "transformation", name: "Transformation", words: "Digital Transformation · Change · Modernization" },
       { key: "cloudMigration", name: "Cloud Migration", words: "Cloud Migration · Infrastructure · Scale" },
       { key: "platform", name: "Platform", words: "Platform · Integration · Unified System" },
+      { key: "gridApps", name: "App Modernization", words: "App Modernization · Legacy Replacement" },
+      { key: "hexNode", name: "Integration Hub", words: "Integration Hub · Middleware" },
+      { key: "directionChevron", name: "Change Roadmap", words: "Change Roadmap · Transformation Path" },
+      { key: "checklist", name: "Adoption Checklist", words: "Change Management · Adoption Checklist" },
+      { key: "peopleIcon", name: "Digital Workforce", words: "Digital Workforce · Enablement" },
+      { key: "dashboard", name: "Digital Dashboard", words: "Digital Maturity Dashboard" },
+      { key: "exchangeArrows", name: "Process Automation", words: "Process Automation · Workflow Exchange" },
+      { key: "ideaSpark", name: "Innovation Culture", words: "Innovation Culture · Digital Mindset" },
+      { key: "signalWave", name: "Connectivity", words: "IoT Connectivity · Sensors" },
+      { key: "keyIcon", name: "Digital Access", words: "Digital Access · Identity Management" },
+      { key: "sealBadge", name: "Maturity Certification", words: "Digital Maturity · Certification" },
+      { key: "cloudSync", name: "Cloud-Native", words: "Cloud-Native · Sync · Scalability" },
     ],
   },
 ];
@@ -788,8 +1137,8 @@ function build() {
       x: MARGIN, y: 3.55, w: 10, h: 1.1, fontFace: TITLE_FONT, fontSize: 40, bold: true,
       color: THEME.onDark, align: "left", margin: 0,
     });
-    s.addText("Editable line icons across 9 categories — every icon is a native PowerPoint shape (recolor, resize, restyle freely), grouped and captioned with searchable keywords.", {
-      x: MARGIN, y: 4.75, w: 9.5, h: 0.75, fontFace: BODY_FONT, fontSize: 15,
+    s.addText("Editable line icons across 10 categories — every icon is a native PowerPoint shape (recolor, resize, restyle freely). Each category page groups its unique icons first, then tints repeats in the secondary color to fill a dense reference grid, all captioned with searchable keywords.", {
+      x: MARGIN, y: 4.75, w: 9.8, h: 0.95, fontFace: BODY_FONT, fontSize: 14,
       color: "D7DCE6", align: "left", margin: 0, lineSpacingMultiple: 1.25,
     });
     const catNames = INDUSTRY_LIBRARY.map((c) => c.name).join("   ·   ");
@@ -799,22 +1148,45 @@ function build() {
     });
   }
 
-  // ---- CATEGORY PAGES -----------------------------------------------------
+  // ---- CATEGORY PAGES: dense ~60-icon grid, grouped by topic --------------
+  const GRID_COLS = 10;
+  const GRID_ROWS = 6;
+  const GRID_TOTAL = GRID_COLS * GRID_ROWS;
+  const ICON_R = 0.19;
+
   INDUSTRY_LIBRARY.forEach((industry) => {
     n++;
     const s = pres.addSlide({ masterName: "MASTER" });
-    slideHeader(s, industry.name, "Editable line icons — recolor, resize, or restyle natively in PowerPoint");
-    const cols = industry.icons.length;
-    const gap = cols > 4 ? 0.3 : 0.5;
-    const badgeR = cols > 4 ? 0.62 : 0.85;
-    const colW = (PAGE_W - MARGIN * 2 - gap * (cols - 1)) / cols;
-    industry.icons.forEach((ic, i) => {
-      const cx = MARGIN + i * (colW + gap) + colW / 2;
-      const cy = 3.15;
-      iconBadge(s, cx, cy, ic.key, badgeR);
-      s.addText(ic.name, { x: cx - colW / 2, y: 4.25, w: colW, h: 0.35, fontFace: TITLE_FONT, fontSize: 15, bold: true, color: NAVY_TEXT, align: "center", margin: 0 });
-      s.addText(ic.words, { x: cx - colW / 2 + 0.1, y: 4.62, w: colW - 0.2, h: 0.6, fontFace: BODY_FONT, fontSize: 10, italic: true, color: THEME.muted, align: "center", margin: 0, lineSpacingMultiple: 1.2 });
-    });
+    const uniqueCount = industry.icons.length;
+    slideHeader(
+      s,
+      industry.name,
+      `${uniqueCount} unique icons, repeated/tinted in the secondary color to fill the grid — editable natively in PowerPoint`
+    );
+    const gridTop = 1.55;
+    const colW = (PAGE_W - MARGIN * 2) / GRID_COLS;
+    const rowH = (PAGE_H - gridTop - 0.35) / GRID_ROWS;
+    for (let i = 0; i < GRID_TOTAL; i++) {
+      const col = i % GRID_COLS;
+      const row = Math.floor(i / GRID_COLS);
+      const ic = industry.icons[i % uniqueCount];
+      const isRepeat = i >= uniqueCount;
+      const color = isRepeat ? THEME.slate : THEME.accent;
+      const cx = MARGIN + col * colW + colW / 2;
+      const cellTop = gridTop + row * rowH;
+      const cy = cellTop + 0.24;
+      ICONS[ic.key](s, cx, cy, ICON_R, color);
+      s.addText(ic.name, {
+        x: cx - colW / 2 + 0.02, y: cellTop + 0.42, w: colW - 0.04, h: 0.16,
+        fontFace: BODY_FONT, fontSize: 6.5, bold: true, color: NAVY_TEXT,
+        align: "center", margin: 0,
+      });
+      s.addText(ic.words, {
+        x: cx - colW / 2 + 0.02, y: cellTop + 0.58, w: colW - 0.04, h: 0.32,
+        fontFace: BODY_FONT, fontSize: 5, italic: true, color: THEME.muted,
+        align: "center", margin: 0, lineSpacingMultiple: 1.05,
+      });
+    }
   });
 
   const outPath = `${__dirname}/Icon-Library-${isDark ? "Dark" : "Light"}.pptx`;
